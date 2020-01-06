@@ -1,8 +1,10 @@
-package com.ems_development.congreso_pccf;
+package com.ems_development.congreso_pccf.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.ems_development.congreso_pccf.R;
 
 public class MainActivity extends AppCompatActivity {
 
