@@ -6,4 +6,6 @@
     <string name="button_continuar">CONTINUAR</string>
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="forgot_password">olvidaste la contraseña?</string>
 </resources>

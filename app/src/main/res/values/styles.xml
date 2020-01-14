@@ -22,5 +22,9 @@
         <item name="android:textColor">@color/light_black</item>
     </style>
 
+    <style name="crear_cuenta">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/violet</item>
+    </style>
 
 </resources>
