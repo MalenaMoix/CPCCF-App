@@ -6,4 +6,21 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="bienvenido">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="congreso_ar">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
+
+    <style name="pacientes_c">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
+
+
 </resources>
