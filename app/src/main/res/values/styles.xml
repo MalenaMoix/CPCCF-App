@@ -7,22 +7,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="bienvenido">
+    <style name="welcome">
         <item name="android:textSize">36sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="congreso_ar">
+    <style name="congress_arg">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/light_black</item>
     </style>
 
-    <style name="pacientes_c">
+    <style name="patients">
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/light_black</item>
     </style>
 
-    <style name="crear_cuenta">
+    <style name="create_account">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/violet</item>
     </style>

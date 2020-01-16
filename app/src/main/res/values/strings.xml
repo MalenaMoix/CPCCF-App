@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">CongresoPCCF</string>
-    <string name="bienvenido">Bienvenido</string>
-    <string name="congreso_ar">Congreso argentino de</string>
-    <string name="pacientes_c">PACIENTES CON CÁNCER Y FAMILIARES</string>
-    <string name="button_continuar">CONTINUAR</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="congress_arg">Congreso argentino de</string>
+    <string name="patients">PACIENTES CON CÁNCER Y FAMILIARES</string>
+    <string name="button_continue">CONTINUAR</string>
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
-    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="create_account">Crear cuenta</string>
     <string name="forgot_password">olvidaste la contraseña?</string>
 </resources>
