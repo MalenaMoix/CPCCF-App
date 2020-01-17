@@ -8,8 +8,11 @@
     <color name="violeta">#726197</color>
     <color name="crema">#FCDEBE</color>
     <color name="blanco">#FFFFFF</color>
+    <color name="negro">#000000</color>
     <color name="gris">#7C7168</color>
     <color name="lila">#BAABDA</color>
+    <color name="rosa">#EA9ABB</color>
+    <color name="lilaBlanquedo">#FCF3FF</color>
     <color name="azulLetras">#3581B8</color>
     <color name="azulCardPronostico">#3B8CC6</color>
 </resources>

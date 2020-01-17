@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CongresoPCCF</string>
     <string name="title_activity_bottom_navigation_view">CPCCF</string>
+    <string name="congress_arg">Congreso argentino de</ string >
+    <string name="pacientes">PACIENTES CON CÁNCER Y FAMILIARES</ string >
     <string name="title_news">Novedades</string>
     <string name="title_shedule_of_talks">Cronograma</string>
     <string name="title_home">Home</string>
@@ -8,4 +10,6 @@
     <string name="title_profile">Perfil</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="cantidad_dias">XXX</string>
+    <string name="dias_congreso">Dias para el congreso</string>
 </resources>
