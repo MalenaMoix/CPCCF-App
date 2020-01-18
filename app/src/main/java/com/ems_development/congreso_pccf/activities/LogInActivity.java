@@ -1,6 +1,10 @@
 package com.ems_development.congreso_pccf.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +14,12 @@ import android.widget.Toast;
 import com.ems_development.congreso_pccf.R;
 
 
-public class LogIn extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
 
     EditText email, password;
     TextView createAccount, forgotPassword;
     Button next;
+    static final int RESET_PASSWORD = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,26 @@ public class LogIn extends AppCompatActivity {
                     //TODO Santiago debe verificar el Sign In con Firebase
                 }
                 else {
-                    Toast.makeText(LogIn.this, "Error, por favor intente de nuevo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, "Error, por favor intente de nuevo", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(LogInActivity.this, ResetPasswordActivity.class), RESET_PASSWORD);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent resultIntent) {
+        super.onActivityResult(requestCode, resultCode, resultIntent);
+        if (requestCode == RESET_PASSWORD){
+            if (resultCode == Activity.RESULT_OK){
+                Toast.makeText(LogInActivity.this, "Chequee su email", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
