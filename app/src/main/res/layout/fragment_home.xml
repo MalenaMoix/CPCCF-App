@@ -25,6 +25,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@android:color/transparent"
                 android:text="@string/congreso_arg"
+                android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/txt_congreso_de"
@@ -38,6 +39,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
                 android:text="@string/pacientes"
+                android:fontFamily="@font/raleway_regular"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -64,7 +66,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 app:cardBackgroundColor="@color/light_lilac"
-                app:cardCornerRadius="3dp"
+                app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/txt_congreso_de"
                 app:layout_constraintStart_toStartOf="@+id/txt_congreso_de"
@@ -75,6 +77,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="41dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_cantidad_dias"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_cantidad_dias"
+                        app:srcCompat="@drawable/ic_counterclockwise_rotation" />
+
                     <TextView
                         android:id="@+id/txt_cantidad_dias"
                         android:layout_width="wrap_content"
@@ -83,6 +95,8 @@
                         android:text="@string/cantidad_dias"
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +104,6 @@
                         android:id="@+id/txt_cantidad_de_dias"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
@@ -98,6 +111,7 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:text="@string/dias_congreso"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
