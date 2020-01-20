@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.ems_development.congreso_pccf.R;
 
-public class ScheduleOfTalks extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_schedule_of_talks, container, false);
+        View root = inflater.inflate(R.layout.fragment_schedule, container, false);
         return root;
     }
 }

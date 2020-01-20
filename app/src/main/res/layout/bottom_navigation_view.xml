@@ -16,7 +16,7 @@
         android:background="@drawable/bottom_navigation_background"
         android:elevation="8dp"
         app:itemIconTint="@drawable/bottom_navigation_color_selector"
-        app:itemTextColor="#FFFFFF"
+        app:itemTextColor="@color/white"
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
