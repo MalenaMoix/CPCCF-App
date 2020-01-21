@@ -7,7 +7,7 @@
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
     <string name="create_account">Crear cuenta</string>
-    <string name="forgot_password">olvidaste la contraseña?</string>
+    <string name="forgot_password">olvidé mi contraseña</string>
 
     <string name="change_password">Cambiar contraseña</string>
     <string name="enter_your_email">Ingresa tu email y te enviaremos un link para que puedas cambiar tu contraseña</string>
