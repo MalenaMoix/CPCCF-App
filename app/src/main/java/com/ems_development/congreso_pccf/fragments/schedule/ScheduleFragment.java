@@ -1,4 +1,4 @@
-package com.ems_development.congreso_pccf.fragments.schedule_of_talks;
+package com.ems_development.congreso_pccf.fragments.schedule;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
