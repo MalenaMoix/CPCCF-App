@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activities.ResetPasswordActivity"></activity>
-        <activity android:name=".activities.LogInActivity">
+        <activity android:name=".activities.LogInActivity"></activity>
+        <activity
+            android:name=".activities.BottomNavigationViewActivity"
+            android:label="@string/title_activity_bottom_navigation_view">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
