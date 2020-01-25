@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">CongresoPCCF</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="congress_arg">Congreso argentino de</string>
+    <string name="patients">PACIENTES CON CÁNCER Y FAMILIARES</string>
+    <string name="button_continue">CONTINUAR</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Email</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="forgot_password">olvidé mi contraseña</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="enter_your_email">Ingresa tu email y te enviaremos un link para que puedas cambiar tu contraseña</string>
+    <string name="enviar">Enviar</string>
     <string name="title_activity_bottom_navigation_view">CPCCF</string>
-    <string name="congress_arg">Congreso argentino de</string >
-    <string name="patients">PACIENTES CON CÁNCER Y FAMILIARES</string >
     <string name="title_news">Novedades</string>
     <string name="title_shedule_of_talks">Cronograma</string>
     <string name="title_home">Home</string>
