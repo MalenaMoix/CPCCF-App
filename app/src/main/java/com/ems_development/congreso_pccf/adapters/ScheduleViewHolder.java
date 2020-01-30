@@ -15,7 +15,7 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder {
 
     public ScheduleViewHolder (@NonNull View base){
         super(base);
-        chatLecturer = base.findViewById(R.id.editText_lecturer_name);
+        chatLecturer = base.findViewById(R.id.editText_lecturer);
         chatName = base.findViewById(R.id.editText_chat_name);
         chatPlace = base.findViewById(R.id.editText_chat_place);
         chatTimeBeginning = base.findViewById(R.id.editText_chat_time_beginning);

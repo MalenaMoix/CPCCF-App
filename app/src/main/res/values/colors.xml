@@ -16,5 +16,6 @@
     <color name="almost_grey">#BDBDBD</color>
     <color name="lilac">#BE8ABF</color>
     <color name="background">#FCF3FF</color>
+    <color name="grey_separator">#EDEDED</color>
 
 </resources>

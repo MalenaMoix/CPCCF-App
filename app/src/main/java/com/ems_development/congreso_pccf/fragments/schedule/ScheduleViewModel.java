@@ -1,4 +1,4 @@
-package com.ems_development.congreso_pccf.fragments;
+package com.ems_development.congreso_pccf.fragments.schedule;
 
 import androidx.lifecycle.ViewModel;
 
