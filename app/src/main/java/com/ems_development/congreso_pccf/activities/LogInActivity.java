@@ -2,7 +2,6 @@ package com.ems_development.congreso_pccf.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.ems_development.congreso_pccf.R;
+import com.ems_development.congreso_pccf.fragments.schedule.ScheduleFragment;
 
 
 public class LogInActivity extends AppCompatActivity {
