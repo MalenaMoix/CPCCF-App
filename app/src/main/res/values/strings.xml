@@ -8,8 +8,19 @@
     <string name="email">Email</string>
     <string name="create_account">Crear cuenta</string>
     <string name="forgot_password">olvidé mi contraseña</string>
-
     <string name="change_password">Cambiar contraseña</string>
     <string name="enter_your_email">Ingresa tu email y te enviaremos un link para que puedas cambiar tu contraseña</string>
     <string name="enviar">Enviar</string>
+    <string name="title_activity_bottom_navigation_view">CPCCF</string>
+    <string name="title_news">Novedades</string>
+    <string name="title_shedule_of_talks">Cronograma</string>
+    <string name="title_home">Home</string>
+    <string name="title_location">Ubicacion</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="quantity_days">346</string>
+    <string name="days_for_congress">Dias para el congreso</string>
+    <string name="home_news">Novedades</string>
+    <string name="home_schedule">Cronograma</string>
 </resources>
