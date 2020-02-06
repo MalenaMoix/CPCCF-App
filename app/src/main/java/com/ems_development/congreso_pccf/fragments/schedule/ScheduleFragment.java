@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ems_development.congreso_pccf.R;
+import com.ems_development.congreso_pccf.adapters.ScheduleAdapter;
 
 
 public class ScheduleFragment extends Fragment {
@@ -24,12 +25,16 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         scheduleViewModel = ViewModelProviders.of(this).get(ScheduleViewModel.class);
-        final View root = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View root = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         scheduleRecyclerView = root.findViewById(R.id.schedule_recycler_view);
         scheduleRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(root.getContext());
         scheduleRecyclerView.setLayoutManager(layoutManager);
+
+        scheduleAdapter = new ScheduleAdapter();
+        scheduleRecyclerView.setAdapter(scheduleAdapter);
+        //TODO los datos del primer card se encuentran hardcodeados
 
         return root;
     }

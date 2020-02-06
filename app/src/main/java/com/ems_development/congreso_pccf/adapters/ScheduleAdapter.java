@@ -16,7 +16,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     @NonNull
     @Override
     public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_schedule, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_schedule, parent, false);
         return new ScheduleViewHolder(view);
     }
 
@@ -28,5 +28,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     @Override
     public int getItemCount() {
         return 1;
+        //TODO retornar el size de la lista de charlas
     }
 }
