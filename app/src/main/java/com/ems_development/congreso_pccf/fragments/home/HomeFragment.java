@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-
-
 import com.ems_development.congreso_pccf.R;
+
 
 public class HomeFragment extends Fragment {
 
@@ -23,6 +20,4 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-
-
 }
