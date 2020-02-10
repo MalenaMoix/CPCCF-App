@@ -23,7 +23,7 @@
     <string name="days_for_congress">Dias para el congreso</string>
     <string name="home_news">Novedades</string>
     <string name="home_schedule">Cronograma</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="street">Calle: </string>
+    <string name="city">Ciudad: </string>
+    <string name="buses">Colectivos: </string>
 </resources>

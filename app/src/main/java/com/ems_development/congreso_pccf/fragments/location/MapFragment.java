@@ -28,7 +28,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private View root;
     private GoogleMap map;
-    private MarkerOptions marker;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_map, container, false);
@@ -46,6 +46,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void updateMap (){
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
+
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 9999);
             return;
@@ -58,8 +60,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(location.getLatitude(), location.getLongitude())).zoom(14.0f).build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         map.moveCamera(cameraUpdate);
+        map.getUiSettings().setZoomControlsEnabled(true);
 
         //TODO Modificar el latlng una vez que se disponga de la ubicacion del congreso
         map.addMarker(new MarkerOptions().position(new LatLng(-31.617375, -60.674830)).title("Congreso Argentino"));
+
+
+        //TODO trazar ruta
+        //https://developers.google.com/maps/documentation/directions/intro?hl=es-419#Waypoints
+        //https://developers.google.com/maps/documentation/directions/start?hl=es-419
+        //https://www.youtube.com/watch?v=YNM_-cR9QKQ
+        LatLng myPosition = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng congressPosition = new LatLng(-31.617375, -60.674830);
+        traceRout(myPosition, congressPosition);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
+    }
+
+    public void traceRout(LatLng origin, LatLng destiny){
+
     }
 }

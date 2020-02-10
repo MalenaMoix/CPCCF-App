@@ -13,6 +13,8 @@ import com.ems_development.congreso_pccf.R;
 
 public class LocationFragment extends Fragment {
 
+    //TODO la calle, ciudad y colectivos estan hardcodeados, cuando se tengan los datos, agregarlos como @string
+
     private LocationViewModel locationViewModel;
     private View root;
     //TODO luego eliminar este boton y ver la manera en la cual se accedera al mapa
