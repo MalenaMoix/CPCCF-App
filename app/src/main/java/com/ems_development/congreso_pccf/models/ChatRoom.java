@@ -6,7 +6,7 @@ public class ChatRoom {
 
     private Integer numberRoom;
     private Integer capacity;
-    private List<Presentation> Presentations;
+    private List<Chat> chats;
 
     public ChatRoom() {
     }
@@ -27,11 +27,11 @@ public class ChatRoom {
         this.capacity = capacity;
     }
 
-    public List<Presentation> getPresentations() {
-        return Presentations;
+    public List<Chat> getChats() {
+        return chats;
     }
 
-    public void setPresentations(List<Presentation> presentations) {
-        Presentations = presentations;
+    public void setChats(List<Chat> chats) {
+        this.chats = chats;
     }
 }

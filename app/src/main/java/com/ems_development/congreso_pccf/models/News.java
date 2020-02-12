@@ -1,6 +1,6 @@
 package com.ems_development.congreso_pccf.models;
 
-public class New {
+public class News {
 
     private String title;
     private String image;
@@ -8,7 +8,7 @@ public class New {
     private User user;
     private Lecturer lecturer;
 
-    public New() {
+    public News() {
     }
 
     public String getTitle() {

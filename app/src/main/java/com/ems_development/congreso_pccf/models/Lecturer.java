@@ -5,11 +5,12 @@ import java.time.LocalDate;
 public class Lecturer {
 
     private String name;
-    private String lastname;
-    private String degrees;
+    private String lastName;
+    private String universityDegrees;
     private LocalDate birthDate;
+    private News news;
     private String location;
-    private Presentation presentation;
+    private Chat chat;
 
     public Lecturer() {
     }
@@ -22,20 +23,20 @@ public class Lecturer {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastname) {
+        this.lastName = lastName;
     }
 
-    public String getDegrees() {
-        return degrees;
+    public String getUniversityDegrees() {
+        return universityDegrees;
     }
 
-    public void setDegrees(String degrees) {
-        this.degrees = degrees;
+    public void setUniversityDegrees(String degrees) {
+        this.universityDegrees = universityDegrees;
     }
 
     public LocalDate getBirthDate() {
@@ -54,11 +55,19 @@ public class Lecturer {
         this.location = location;
     }
 
-    public Presentation getPresentation() {
-        return presentation;
+    public Chat getChat() {
+        return chat;
     }
 
-    public void setPresentation(Presentation presentation) {
-        this.presentation = presentation;
+    public void setChat(Chat chat) {
+        this.chat = chat;
+    }
+
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
     }
 }

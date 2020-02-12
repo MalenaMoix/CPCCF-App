@@ -5,16 +5,26 @@ import java.util.List;
 
 public class User {
 
+    private Long dni;
     private String email;
     private String password;
     private String name;
-    private String lastname;
+    private String lastName;
     private LocalDate birthDate;
     private String location;
-    private List<Presentation> presentations;
+    private List<Chat> chats;
+    private List<News> newsList;
     private Boolean isAssistant = false;
 
     public User() {
+    }
+
+    public Long getDni() {
+        return dni;
+    }
+
+    public void setDni(Long dni) {
+        this.dni = dni;
     }
 
     public String getEmail() {
@@ -41,12 +51,12 @@ public class User {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastname) {
+        this.lastName = lastName;
     }
 
     public LocalDate getBirthDate() {
@@ -65,12 +75,20 @@ public class User {
         this.location = location;
     }
 
-    public List<Presentation> getPresentations() {
-        return presentations;
+    public List<Chat> getChats() {
+        return chats;
     }
 
-    public void setPresentations(List<Presentation> presentations) {
-        this.presentations = presentations;
+    public void setChats(List<Chat> chats) {
+        this.chats = chats;
+    }
+
+    public List<News> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
     }
 
     public Boolean getAssistant() {

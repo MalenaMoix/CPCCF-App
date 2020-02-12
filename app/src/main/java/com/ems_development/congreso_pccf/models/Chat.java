@@ -3,16 +3,16 @@ package com.ems_development.congreso_pccf.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Presentation {
+public class Chat {
 
     private String name;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private ChatRoom room;
-    private Lecturer lecturer;
+    private List<Lecturer> lecturerList;
     private List<User> users;
 
-    public Presentation() {
+    public Chat() {
     }
 
     public String getName() {
@@ -47,12 +47,12 @@ public class Presentation {
         this.room = room;
     }
 
-    public Lecturer getLecturer() {
-        return lecturer;
+    public List<Lecturer> getLecturerList() {
+        return lecturerList;
     }
 
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
+    public void setLecturer(List<Lecturer> lecturerList) {
+        this.lecturerList = lecturerList;
     }
 
     public List<User> getUsers() {
