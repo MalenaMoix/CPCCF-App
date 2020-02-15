@@ -27,7 +27,7 @@ public class BottomNavigationViewActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationViewDrawer = findViewById(R.id.nav_view);
+        NavigationView navigationViewDrawer = findViewById(R.id.nav_view_drawer);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home)
                 .setDrawerLayout(drawer)
@@ -37,7 +37,7 @@ public class BottomNavigationViewActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationViewDrawer, navControllerDrawer);
 
         //Bottom navigation
-        BottomNavigationView navigationViewBottom = findViewById(R.id.nav_view);
+        BottomNavigationView navigationViewBottom = findViewById(R.id.nav_view_bottom);
         NavController navControllerBottom = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navigationViewBottom, navControllerBottom);
     }
