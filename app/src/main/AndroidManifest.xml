@@ -9,16 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.ResetPasswordActivity"></activity>
-        <activity android:name=".activities.LogInActivity"></activity>
         <activity
-            android:name=".activities.BottomNavigationViewActivity"
-            android:label="@string/title_activity_bottom_navigation_view">
+            android:name=".activities.ViewForAdminUsersActivity"
+            android:label="@string/title_activity_view_for_admin_users"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.ResetPasswordActivity" />
+        <activity android:name=".activities.LogInActivity" />
+        <activity
+            android:name=".activities.BottomNavigationViewActivity"
+            android:label="@string/title_activity_bottom_navigation_view">
+
         </activity>
 
         <meta-data
