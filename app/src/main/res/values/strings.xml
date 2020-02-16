@@ -25,4 +25,7 @@
     <string name="home_schedule">Cronograma</string>
     <string name="btn_general_news">Noticias</string>
     <string name="btn_lecturer_news">Disertantes</string>
+    <string name="street">Calle: </string>
+    <string name="city">Ciudad: </string>
+    <string name="buses">Colectivos: </string>
 </resources>
