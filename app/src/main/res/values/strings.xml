@@ -23,4 +23,6 @@
     <string name="days_for_congress">Dias para el congreso</string>
     <string name="home_news">Novedades</string>
     <string name="home_schedule">Cronograma</string>
+    <string name="btn_general_news">Noticias</string>
+    <string name="btn_lecturer_news">Disertantes</string>
 </resources>
