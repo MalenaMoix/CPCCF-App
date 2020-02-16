@@ -23,7 +23,7 @@
     <string name="days_for_congress">Dias para el congreso</string>
     <string name="home_news">Novedades</string>
     <string name="home_schedule">Cronograma</string>
-    <string name="title_activity_view_for_admin_users">ViewForAdminUsersActivity</string>
-    <string name="nav_header_desc">Navigation header</string>
-    
+    <string name="street">Calle: </string>
+    <string name="city">Ciudad: </string>
+    <string name="buses">Colectivos: </string>
 </resources>

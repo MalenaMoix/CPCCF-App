@@ -1,14 +1,14 @@
 package com.ems_development.congreso_pccf.fragments.news;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+        import androidx.annotation.NonNull;
+        import androidx.fragment.app.Fragment;
 
-import com.ems_development.congreso_pccf.R;
+        import com.ems_development.congreso_pccf.R;
 
 public class NewsFragment extends Fragment {
 
