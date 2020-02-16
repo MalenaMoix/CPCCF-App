@@ -3,15 +3,21 @@ package com.ems_development.congreso_pccf.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.ems_development.congreso_pccf.R;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import java.util.List;
+
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
-    public ScheduleAdapter (){}
+    private List<QueryDocumentSnapshot> chats;
+    private QueryDocumentSnapshot document;
+
+    public ScheduleAdapter (List<QueryDocumentSnapshot> chatsObtained){
+        chats = chatsObtained;
+    }
 
     @NonNull
     @Override
@@ -22,12 +28,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
-
+        document = chats.get(position);
+        holder.chatName.setText(document.get("name").toString());
     }
 
     @Override
     public int getItemCount() {
-        return 1;
-        //TODO retornar el size de la lista de charlas
+        return chats.size();
     }
 }
