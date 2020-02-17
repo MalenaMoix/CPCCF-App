@@ -48,6 +48,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
                 case FirestoreDatabase.SUCCESS_GETTING_ALL_CHATS:
                     Log.d(TAG, "Se recuperaron todas las charlas.");
                     chats = (List<QueryDocumentSnapshot>) msg.obj;
+                    notifyDataSetChanged();
                     break;
                 case FirestoreDatabase.ERROR_GETTING_ALL_CHATS:
                     Log.w(TAG, "Error al recuperar todas las charlas.");
