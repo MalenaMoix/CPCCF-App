@@ -24,6 +24,11 @@
         tools:layout="@layout/fragment_news" />
 
     <fragment
+        android:id="@+id/navigation_create_news"
+        android:name="com.ems_development.congreso_pccf.fragments.news.CreateNewsFragment"
+        tools:layout="@layout/fragment_create_news" />
+
+    <fragment
         android:id="@+id/navigation_location"
         android:name="com.ems_development.congreso_pccf.fragments.location.LocationFragment"
         android:label="@string/title_location"
