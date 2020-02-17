@@ -14,6 +14,7 @@ import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.adapters.ScheduleAdapter;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,14 +22,15 @@ public class ScheduleFragment extends Fragment {
 
     //TODO ver tema de que cuando se agreguen muchas charlas, la ultima que aarezca no se encuentre tapada por el bottom nav bar
 
-    private FirestoreDatabase firestoreDatabase = new FirestoreDatabase();
-    private List<QueryDocumentSnapshot> chats= firestoreDatabase.getAllChats();
-
+    private static final String TAG = "SCHEDULE FRAGMENT";
     private ScheduleViewModel scheduleViewModel;
     private RecyclerView scheduleRecyclerView;
     private RecyclerView.Adapter scheduleAdapter;
     private RecyclerView.ViewHolder scheduleViewHolder;
     private RecyclerView.LayoutManager layoutManager;
+    private FirestoreDatabase firestoreDatabase = new FirestoreDatabase();
+    private List<QueryDocumentSnapshot> chats = new ArrayList<>();
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,8 +42,9 @@ public class ScheduleFragment extends Fragment {
         layoutManager = new LinearLayoutManager(root.getContext());
         scheduleRecyclerView.setLayoutManager(layoutManager);
 
-        scheduleAdapter = new ScheduleAdapter(chats);
+        scheduleAdapter = new ScheduleAdapter();
         scheduleRecyclerView.setAdapter(scheduleAdapter);
+
         //TODO los datos del primer card se encuentran hardcodeados
 
         return root;
