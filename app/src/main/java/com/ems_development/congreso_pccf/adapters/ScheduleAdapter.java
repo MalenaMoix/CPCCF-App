@@ -1,10 +1,7 @@
 package com.ems_development.congreso_pccf.adapters;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Looper;
 import android.os.Message;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +13,9 @@ import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Handler;
-import java.util.logging.LogRecord;
 
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
@@ -34,13 +29,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     private static final String LECTURER = "lecturer";
     private List<QueryDocumentSnapshot> chats = new ArrayList<>();
     private QueryDocumentSnapshot chatBeingTreaten;
-    private CollectionReference chatRoomCollection;
-    private CollectionReference lecturerCollection;
     private FirestoreDatabase firestoreDatabase;
-    private List<DocumentSnapshot> chatRoomDocument = new ArrayList<>();
 
 
-
+    //TODO Chequear que cuando se muestren las charlas esten en orden segun la hora de inicio
     private final Handler handler = new Handler(Looper.myLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -48,6 +40,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
                 case FirestoreDatabase.SUCCESS_GETTING_ALL_CHATS:
                     Log.d(TAG, "Se recuperaron todas las charlas.");
                     chats = (List<QueryDocumentSnapshot>) msg.obj;
+                    //TODO mostrar algun loading para que el usuario sepa que se estan buscando los datos
                     notifyDataSetChanged();
                     break;
                 case FirestoreDatabase.ERROR_GETTING_ALL_CHATS:
@@ -56,7 +49,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
             }
         }
     };
-
 
     public ScheduleAdapter (){
         firestoreDatabase = new FirestoreDatabase();
@@ -73,28 +65,25 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
         chatBeingTreaten = chats.get(position);
-        chatRoomCollection = chatBeingTreaten.getReference().collection(CHAT_ROOM);
-        lecturerCollection = chatBeingTreaten.getReference().collection(LECTURER);
 
         holder.chatName.setText(chatBeingTreaten.get(NAME).toString());
         holder.chatTimeBeginning.setText(chatBeingTreaten.get(START_DATE).toString());
         holder.chatTimeFinish.setText(chatBeingTreaten.get(END_DATE).toString());
-        //setChatRoom(holder, chatRoomCollection);
+        holder.chatPlace.setText(chatBeingTreaten.get(CHAT_ROOM).toString());
+
         //setLecturers(holder, lecturerCollection);
     }
 
 
-
-    private void setChatRoom (@NonNull ScheduleViewHolder holder, CollectionReference chatRoom){
-        //TODO no encuentra nada
-        //chatRoomDocument = firestoreDatabase.getChatRoomByChatId(chatBeingTreaten.getId());
-        for (DocumentSnapshot documentSnapshot : chatRoomDocument){
+    /*private void setChatRoom (@NonNull ScheduleViewHolder holder, String idChat){
+        firestoreDatabase.getChatRoomByChatId(idChat, handler);
+        for (DocumentSnapshot documentSnapshot : chatRoomCollectionFound){
             holder.chatPlace.setText(documentSnapshot.get(NUMBER_ROOM).toString());
         }
-    }
+    }*/
 
     private void setLecturers (@NonNull ScheduleViewHolder holder, CollectionReference lecturers){
-        //TODO
+        //TODO buscar los lecturers de una charla dada
     }
 
     @Override

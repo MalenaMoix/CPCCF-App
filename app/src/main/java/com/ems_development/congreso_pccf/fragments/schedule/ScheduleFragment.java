@@ -26,10 +26,7 @@ public class ScheduleFragment extends Fragment {
     private ScheduleViewModel scheduleViewModel;
     private RecyclerView scheduleRecyclerView;
     private RecyclerView.Adapter scheduleAdapter;
-    private RecyclerView.ViewHolder scheduleViewHolder;
     private RecyclerView.LayoutManager layoutManager;
-    private FirestoreDatabase firestoreDatabase = new FirestoreDatabase();
-    private List<QueryDocumentSnapshot> chats = new ArrayList<>();
 
 
     @Override
@@ -44,8 +41,6 @@ public class ScheduleFragment extends Fragment {
 
         scheduleAdapter = new ScheduleAdapter();
         scheduleRecyclerView.setAdapter(scheduleAdapter);
-
-        //TODO los datos del primer card se encuentran hardcodeados
 
         return root;
     }
