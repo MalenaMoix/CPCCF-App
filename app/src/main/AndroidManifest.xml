@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".activities.ViewForAdminUsersActivity">
+        
+        </activity>
 
         <activity android:name=".activities.ResetPasswordActivity">
 
@@ -21,7 +24,6 @@
         <activity android:name=".activities.LogInActivity">
 
         </activity>
-
         <activity
             android:name=".activities.BottomNavigationViewActivity"
             android:label="@string/title_activity_bottom_navigation_view">
