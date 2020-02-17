@@ -30,6 +30,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     private List<QueryDocumentSnapshot> chats = new ArrayList<>();
     private QueryDocumentSnapshot chatBeingTreaten;
     private FirestoreDatabase firestoreDatabase;
+    private View loadingPanel;
 
 
     //TODO Chequear que cuando se muestren las charlas esten en orden segun la hora de inicio
@@ -40,8 +41,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
                 case FirestoreDatabase.SUCCESS_GETTING_ALL_CHATS:
                     Log.d(TAG, "Se recuperaron todas las charlas.");
                     chats = (List<QueryDocumentSnapshot>) msg.obj;
-                    //TODO mostrar algun loading para que el usuario sepa que se estan buscando los datos
                     notifyDataSetChanged();
+                    loadingPanel.setVisibility(View.GONE);
                     break;
                 case FirestoreDatabase.ERROR_GETTING_ALL_CHATS:
                     Log.w(TAG, "Error al recuperar todas las charlas.");
@@ -50,7 +51,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         }
     };
 
-    public ScheduleAdapter (){
+    public ScheduleAdapter (View loading){
+        loadingPanel = loading;
+
         firestoreDatabase = new FirestoreDatabase();
         firestoreDatabase.getAllChats(handler);
     }

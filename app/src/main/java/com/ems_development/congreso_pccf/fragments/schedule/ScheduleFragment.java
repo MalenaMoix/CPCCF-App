@@ -39,7 +39,7 @@ public class ScheduleFragment extends Fragment {
         layoutManager = new LinearLayoutManager(root.getContext());
         scheduleRecyclerView.setLayoutManager(layoutManager);
 
-        scheduleAdapter = new ScheduleAdapter();
+        scheduleAdapter = new ScheduleAdapter(root.findViewById(R.id.loadingPanel));
         scheduleRecyclerView.setAdapter(scheduleAdapter);
 
         return root;
