@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,9 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activities.ViewForAdminUsersActivity">
-        
-        </activity>
 
         <activity android:name=".activities.ResetPasswordActivity">
 
@@ -24,6 +24,7 @@
         <activity android:name=".activities.LogInActivity">
 
         </activity>
+
         <activity
             android:name=".activities.BottomNavigationViewActivity"
             android:label="@string/title_activity_bottom_navigation_view">

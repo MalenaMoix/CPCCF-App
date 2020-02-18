@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import com.ems_development.congreso_pccf.R;
+import com.google.firebase.FirebaseApp;
 
 
 public class HomeFragment extends Fragment {
