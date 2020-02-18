@@ -35,6 +35,8 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO Santiago debe llamar a la actividad registrar usuario
+                    startActivityForResult(new Intent(LogInActivity.this, SingUpActivity.class),1);
+
             }
         });
 

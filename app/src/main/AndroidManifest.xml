@@ -14,10 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".activities.ViewForAdminUsersActivity">
-        
+
         </activity>
 
         <activity android:name=".activities.ResetPasswordActivity">
+
+        </activity>
+
+<!--        android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+        <activity android:name=".activities.SingUpActivity">
 
         </activity>
 
