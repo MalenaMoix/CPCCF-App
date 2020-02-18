@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
         CardView cardView = root.findViewById(R.id.card_view_home);
         cardView.setBackgroundResource(R.drawable.card_view_form_home);
 
-        //TODO colocar esto en la pantalla de inicio de la aplicacion
+        //TODO colocar esto en la pantalla de inicio de la aplicacion y personalizarla
         FirebaseMessaging.getInstance().subscribeToTopic("general").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
