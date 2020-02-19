@@ -7,8 +7,8 @@ exports.sendNotificationToTopic = functions.firestore
   .onWrite(async event => {
     var message = {
       notification: {
-        title: "Notificacion",
-        body: "Se han realizado cambios en la app."
+        title: "Cambios en el Congreso",
+        body: "Presiona aqui para enterarte de las novedades"
       },
       topic: "general"
     };

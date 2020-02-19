@@ -52,6 +52,14 @@
             android:resource="@drawable/ic_main_logo" />
 
         <meta-data android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/background" />
+            android:resource="@color/light_grey" />
+
+        <service
+            android:name=".utils.AppFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
