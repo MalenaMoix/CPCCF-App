@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +23,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     private static final String START_DATE = "startDate";
     private static final String END_DATE = "endDate";
     private static final String CHAT_ROOM = "chatRoom";
-    private static final String LECTURER = "lecturer";
     private List<QueryDocumentSnapshot> chats = new ArrayList<>();
+    private List<QueryDocumentSnapshot> lecturers = new ArrayList<>();
     private QueryDocumentSnapshot chatBeingTreaten;
     private FirestoreDatabase firestoreDatabase;
     private View loadingPanel;
@@ -41,10 +39,18 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
                     Log.d(TAG, "Se recuperaron todas las charlas.");
                     chats = (List<QueryDocumentSnapshot>) msg.obj;
                     notifyDataSetChanged();
-                    loadingPanel.setVisibility(View.GONE);
                     break;
                 case FirestoreDatabase.ERROR_GETTING_ALL_CHATS:
                     Log.w(TAG, "Error al recuperar todas las charlas.");
+                    break;
+                case FirestoreDatabase.SUCCESS_GETTING_ALL_LECTURERS:
+                    Log.d(TAG, "Se recuperaron todas los disertantes.");
+                    lecturers = (List<QueryDocumentSnapshot>) msg.obj;
+                    notifyDataSetChanged();
+                    loadingPanel.setVisibility(View.GONE);
+                    break;
+                case FirestoreDatabase.ERROR_GETTING_ALL_LECTURERS:
+                    Log.w(TAG, "Error al recuperar todos los disertantes.");
                     break;
             }
         }
@@ -55,6 +61,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
         firestoreDatabase = new FirestoreDatabase();
         firestoreDatabase.getAllChats(handler);
+        firestoreDatabase.getAllLecturers(handler);
     }
 
     @NonNull
@@ -73,19 +80,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         holder.chatTimeFinish.setText(chatBeingTreaten.get(END_DATE).toString());
         holder.chatPlace.setText(chatBeingTreaten.get(CHAT_ROOM).toString());
 
-        //setLecturers(holder, lecturerCollection);
+        setLecturers(holder, chatBeingTreaten);
     }
 
-
-    /*private void setChatRoom (@NonNull ScheduleViewHolder holder, String idChat){
-        firestoreDatabase.getChatRoomByChatId(idChat, handler);
-        for (DocumentSnapshot documentSnapshot : chatRoomCollectionFound){
-            holder.chatPlace.setText(documentSnapshot.get(NUMBER_ROOM).toString());
+    private void setLecturers (@NonNull ScheduleViewHolder holder, QueryDocumentSnapshot chat){
+        for (QueryDocumentSnapshot lecturer : lecturers){
+            if (lecturer.getReference().getParent().getParent().toString().equals(chat.getReference().toString())){
+                holder.chatLecturer.setText(lecturer.get("universityDegrees") + " " + lecturer.get("name") + " " + lecturer.get("lastName"));
+            }
         }
-    }*/
-
-    private void setLecturers (@NonNull ScheduleViewHolder holder, CollectionReference lecturers){
-        //TODO buscar los lecturers de una charla dada
     }
 
     @Override
