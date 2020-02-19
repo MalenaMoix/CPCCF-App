@@ -26,6 +26,7 @@
     <fragment
         android:id="@+id/navigation_create_news"
         android:name="com.ems_development.congreso_pccf.fragments.news.CreateNewsFragment"
+        android:label="@string/title_news"
         tools:layout="@layout/fragment_create_news" />
 
     <fragment

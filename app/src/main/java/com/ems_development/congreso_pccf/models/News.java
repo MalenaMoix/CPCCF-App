@@ -11,6 +11,12 @@ public class News {
     public News() {
     }
 
+    public News(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
+
     public String getTitle() {
         return title;
     }
