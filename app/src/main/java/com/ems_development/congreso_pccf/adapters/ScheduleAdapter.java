@@ -25,7 +25,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     private static final String START_DATE = "startDate";
     private static final String END_DATE = "endDate";
     private static final String CHAT_ROOM = "chatRoom";
-    private static final String NUMBER_ROOM = "number";
     private static final String LECTURER = "lecturer";
     private List<QueryDocumentSnapshot> chats = new ArrayList<>();
     private QueryDocumentSnapshot chatBeingTreaten;
