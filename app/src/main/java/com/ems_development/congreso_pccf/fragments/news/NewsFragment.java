@@ -39,7 +39,7 @@ public class NewsFragment extends Fragment {
         buttonGeneralNews = root.findViewById(R.id.btn_general_new);
         buttonLecturerNews = root.findViewById(R.id.btn_lecturer_news);
 
-        newsAdapter = new NewsAdapter();
+        newsAdapter = new NewsAdapter(false);
         newsRecyclerView.setAdapter(newsAdapter);
         //TODO los datos del primer card se encuentran hardcodeados
 
@@ -52,6 +52,8 @@ public class NewsFragment extends Fragment {
                 buttonLecturerNews.setBackgroundResource(R.drawable.button_lecturer_off);
                 buttonLecturerNews.setTextColor(getResources().getColor(R.color.pink));
                 buttonLecturerNews.setEnabled(true);
+                newsAdapter = new NewsAdapter(false);
+                newsRecyclerView.setAdapter(newsAdapter);
             }
         });
 
@@ -64,6 +66,8 @@ public class NewsFragment extends Fragment {
                 buttonGeneralNews.setBackgroundResource(R.drawable.button_news_off);
                 buttonGeneralNews.setTextColor(getResources().getColor(R.color.pink));
                 buttonGeneralNews.setEnabled(true);
+                newsAdapter = new NewsAdapter(true);
+                newsRecyclerView.setAdapter(newsAdapter);
             }
         });
 

@@ -11,12 +11,22 @@ import com.ems_development.congreso_pccf.R;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
 
-    public NewsAdapter(){}
+    private Boolean isLecturerNews;
+
+    public NewsAdapter(Boolean isLecturerNews){
+        this.isLecturerNews = isLecturerNews;
+    }
 
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_news, parent, false);
+
+        View view;
+        if(isLecturerNews) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_lecturer, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_news, parent, false);
+        }
         return new NewsViewHolder(view);
     }
 
