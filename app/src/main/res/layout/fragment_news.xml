@@ -12,26 +12,26 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_general_new"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Noticias"
+            android:text="@string/btn_general_news"
             android:background="@drawable/button_news_on"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/btn_lecturer_news"
             app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_lecturer_news"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Disertantes"
+            android:text="@string/btn_lecturer_news"
             android:background="@drawable/button_lecturer_off"
             android:textColor="@color/pink"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@+id/btn_general_new"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/btn_general_new"
             tools:listitem="@layout/card_news" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
