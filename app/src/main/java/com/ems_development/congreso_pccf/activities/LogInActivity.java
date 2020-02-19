@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.ems_development.congreso_pccf.R;
-import com.ems_development.congreso_pccf.fragments.schedule.ScheduleFragment;
 
 
 public class LogInActivity extends AppCompatActivity {

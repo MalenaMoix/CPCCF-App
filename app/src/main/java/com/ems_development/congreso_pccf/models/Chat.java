@@ -8,7 +8,7 @@ public class Chat {
     private String name;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private ChatRoom room;
+    private String chatRoom;
     private List<Lecturer> lecturerList;
     private List<User> users;
 
@@ -39,12 +39,12 @@ public class Chat {
         this.endDate = endDate;
     }
 
-    public ChatRoom getRoom() {
-        return room;
+    public String getRoom() {
+        return chatRoom;
     }
 
-    public void setRoom(ChatRoom room) {
-        this.room = room;
+    public void setRoom(String chatRoom) {
+        this.chatRoom = chatRoom;
     }
 
     public List<Lecturer> getLecturerList() {
