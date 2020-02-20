@@ -22,38 +22,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/image_view_new"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_title"
-                app:srcCompat="@drawable/ic_main_logo" />
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/txt_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="32dp"
                 android:background="@null"
                 android:ems="10"
-                android:text="-Personas que padezcan o hayan padecido cáncer. -Familiares y amigos. -Voluntarios. -Profesionales del área socio-sanitaria. -Psicólogos, trabajadores sociales, terapistas ocupacionales, entre otros."
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 app:fontFamily="@font/muli_semibold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_new" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_title" />
 
             <TextView
                 android:id="@+id/txt_title"
@@ -62,7 +52,6 @@
                 android:layout_marginTop="3dp"
                 android:background="@null"
                 android:ems="10"
-                android:text="Congreso dirigido a:"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:fontFamily="@font/muli_extrabold"
