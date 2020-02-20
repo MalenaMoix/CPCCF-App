@@ -21,6 +21,9 @@ import android.widget.ProgressBar;
 public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = "NEWS ADAPTER";
+    private static final String TITLE = "title";
+    private static final String CONTENT = "content";
+    private static final String UNIVERSITY_DEGREES = "universityDegrees";
     private Boolean isLecturerNews;
     private ProgressBar loadingPanel;
     private FirestoreDatabase firestoreDatabase;
@@ -103,14 +106,14 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         switch (holder.getItemViewType()){
             case 0:
                 GeneralNewsViewHolder generalNews = (GeneralNewsViewHolder) holder;
-                generalNews.txtTitle.setText(newsBeingTreaten.get("title").toString());
-                generalNews.txtContent.setText(newsBeingTreaten.get("content").toString());
+                generalNews.txtTitle.setText(newsBeingTreaten.get(TITLE).toString());
+                generalNews.txtContent.setText(newsBeingTreaten.get(CONTENT).toString());
                 break;
             case 2:
                 LecturersNewsViewHolder lecturerNews = (LecturersNewsViewHolder) holder;
-                lecturerNews.txtTitle.setText(newsBeingTreaten.get("title").toString());
-                lecturerNews.txtContent.setText(newsBeingTreaten.get("content").toString());
-                lecturerNews.txtUniversityDegrees.setText(newsBeingTreaten.get("universityDegrees").toString());
+                lecturerNews.txtTitle.setText(newsBeingTreaten.get(TITLE).toString());
+                lecturerNews.txtContent.setText(newsBeingTreaten.get(CONTENT).toString());
+                lecturerNews.txtUniversityDegrees.setText(newsBeingTreaten.get(UNIVERSITY_DEGREES).toString());
                 break;
         }
     }
