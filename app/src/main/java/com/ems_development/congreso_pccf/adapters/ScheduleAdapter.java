@@ -84,10 +84,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     }
 
     private void setLecturers (@NonNull ScheduleViewHolder holder, QueryDocumentSnapshot chat){
+        String lecturerData = "";
+
         for (QueryDocumentSnapshot lecturer : lecturers){
             if (lecturer.getReference().getParent().getParent().toString().equals(chat.getReference().toString())){
-                holder.chatLecturer.setText(lecturer.get("universityDegrees") + " " + lecturer.get("name") + " " + lecturer.get("lastName"));
+                lecturerData += lecturer.get("universityDegrees") + " " + lecturer.get("name") + " " + lecturer.get("lastName") + " - ";
             }
+            holder.chatLecturer.setText(lecturerData);
         }
     }
 
