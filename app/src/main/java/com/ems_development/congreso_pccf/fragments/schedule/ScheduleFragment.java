@@ -11,10 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ems_development.congreso_pccf.R;
-import com.ems_development.congreso_pccf.adapters.ScheduleAdapter;
-import com.ems_development.congreso_pccf.data.FirestoreDatabase;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import java.util.ArrayList;
+import com.ems_development.congreso_pccf.adapters.schedule.ScheduleAdapter;
 
 public class ScheduleFragment extends Fragment {
 

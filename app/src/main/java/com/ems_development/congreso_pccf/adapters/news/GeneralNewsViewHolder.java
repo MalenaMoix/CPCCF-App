@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ems_development.congreso_pccf.R;
 
 
-public class NewsViewHolder extends RecyclerView.ViewHolder {
+public class GeneralNewsViewHolder extends RecyclerView.ViewHolder {
     public TextView txtTitle, txtContent;
     public ImageView imageNews;
 
-    public NewsViewHolder(@NonNull View base){
+    public GeneralNewsViewHolder(@NonNull View base){
         super(base);
         txtTitle = base.findViewById(R.id.txt_title);
         txtContent = base.findViewById(R.id.txt_content);

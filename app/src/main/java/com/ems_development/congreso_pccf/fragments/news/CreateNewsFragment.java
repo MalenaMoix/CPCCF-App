@@ -11,12 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.activities.ViewForAdminUsersActivity;
-import com.ems_development.congreso_pccf.adapters.ScheduleAdapter;
 import com.ems_development.congreso_pccf.models.User;
 
 

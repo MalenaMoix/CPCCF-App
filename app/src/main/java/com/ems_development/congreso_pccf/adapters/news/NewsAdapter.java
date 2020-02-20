@@ -18,7 +18,7 @@ import android.os.Handler;
 import android.widget.ProgressBar;
 
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = "NEWS ADAPTER";
     private Boolean isLecturerNews;
@@ -62,20 +62,37 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
         firestoreDatabase.getAllLecturersNews(handler);
     }
 
+    @Override
+    public int getItemViewType(int positionViewType) {
+        if (isLecturerNews){
+            positionViewType = 2;
+        }
+        else {
+            positionViewType = 0;
+        }
+        return positionViewType;
+    }
+
     @NonNull
     @Override
-    public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         if (isLecturerNews) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_lecturers_news, parent, false);
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_general_news, parent, false);
         }
-        return new NewsViewHolder(view);
+
+        if (viewType == 0){
+            return new GeneralNewsViewHolder(view);
+        }
+        else {
+            return new LecturersNewsViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (isLecturerNews){
             newsBeingTreaten = allLecturersNews.get(position);
         }
@@ -83,8 +100,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
             newsBeingTreaten = allGeneralNews.get(position);
         }
 
-        holder.txtTitle.setText(newsBeingTreaten.get("title").toString());
-        holder.txtContent.setText(newsBeingTreaten.get("content").toString());
+        switch (holder.getItemViewType()){
+            case 0:
+                GeneralNewsViewHolder generalNews = (GeneralNewsViewHolder) holder;
+                generalNews.txtTitle.setText(newsBeingTreaten.get("title").toString());
+                generalNews.txtContent.setText(newsBeingTreaten.get("content").toString());
+                break;
+            case 2:
+                LecturersNewsViewHolder lecturerNews = (LecturersNewsViewHolder) holder;
+                lecturerNews.txtTitle.setText(newsBeingTreaten.get("title").toString());
+                lecturerNews.txtContent.setText(newsBeingTreaten.get("content").toString());
+                lecturerNews.txtUniversityDegrees.setText(newsBeingTreaten.get("universityDegrees").toString());
+                break;
+        }
     }
 
     @Override
