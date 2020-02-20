@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.ems_development.congreso_pccf.models.User;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -21,6 +22,8 @@ import android.view.Menu;
 public class ViewForAdminUsersActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_location, R.id.navigation_news, R.id.navigation_profile, R.id.navigation_schedule)
+                R.id.navigation_home, R.id.navigation_location, R.id.navigation_news, R.id.navigation_create_news, R.id.navigation_profile, R.id.navigation_schedule)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_admin);
@@ -46,5 +49,9 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_admin);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public User getCurrentUser() {
+        return this.user;
     }
 }
