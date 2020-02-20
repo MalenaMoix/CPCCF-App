@@ -15,8 +15,6 @@ import com.ems_development.congreso_pccf.adapters.ScheduleAdapter;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class ScheduleFragment extends Fragment {
 

@@ -7,7 +7,7 @@
         android:title="@string/title_news"/>
 
     <item
-        android:id="@+id/navigation_schedule_of_talks"
+        android:id="@+id/navigation_schedule"
         android:icon="@drawable/ic_cronograma"
         android:title="@string/title_shedule_of_talks" />
 
