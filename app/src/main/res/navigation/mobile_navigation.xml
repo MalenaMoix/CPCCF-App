@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_schedule_of_talks"
+        android:id="@+id/navigation_schedule"
         android:name="com.ems_development.congreso_pccf.fragments.schedule.ScheduleFragment"
         android:label="@string/title_shedule_of_talks"
         tools:layout="@layout/fragment_schedule" />
