@@ -33,5 +33,5 @@
     <string name="txt_content_news">Contenido:</string>
     <string name="hint_title_news">Titulo</string>
     <string name="hint_content_news">Contenido</string>
-    <string name="btn_create_news">Nueva noticia</string>
+    <string name="btn_create_news">Crear</string>
 </resources>
