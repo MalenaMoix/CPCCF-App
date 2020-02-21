@@ -1,31 +1,30 @@
 package com.ems_development.congreso_pccf.fragments.news;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.adapters.news.NewsAdapter;
+
 
 public class NewsFragment extends Fragment {
 
     private NewsViewModel newsViewModel;
     private RecyclerView newsRecyclerView;
     private RecyclerView.Adapter newsAdapter;
-    private RecyclerView.ViewHolder newsViewHolder;
     private RecyclerView.LayoutManager layoutManager;
     private Button buttonGeneralNews;
     private Button buttonLecturerNews;
+    private ProgressBar loadingPanel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,10 +37,10 @@ public class NewsFragment extends Fragment {
         newsRecyclerView.setLayoutManager(layoutManager);
         buttonGeneralNews = root.findViewById(R.id.btn_general_new);
         buttonLecturerNews = root.findViewById(R.id.btn_lecturer_news);
+        loadingPanel = root.findViewById(R.id.progress_bar);
 
-        newsAdapter = new NewsAdapter(false);
+        newsAdapter = new NewsAdapter(false, loadingPanel);
         newsRecyclerView.setAdapter(newsAdapter);
-        //TODO los datos del primer card se encuentran hardcodeados
 
         buttonGeneralNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +51,7 @@ public class NewsFragment extends Fragment {
                 buttonLecturerNews.setBackgroundResource(R.drawable.button_lecturer_off);
                 buttonLecturerNews.setTextColor(getResources().getColor(R.color.pink));
                 buttonLecturerNews.setEnabled(true);
-                newsAdapter = new NewsAdapter(false);
+                newsAdapter = new NewsAdapter(false, loadingPanel);
                 newsRecyclerView.setAdapter(newsAdapter);
             }
         });
@@ -66,13 +65,11 @@ public class NewsFragment extends Fragment {
                 buttonGeneralNews.setBackgroundResource(R.drawable.button_news_off);
                 buttonGeneralNews.setTextColor(getResources().getColor(R.color.pink));
                 buttonGeneralNews.setEnabled(true);
-                newsAdapter = new NewsAdapter(true);
+                newsAdapter = new NewsAdapter(true, loadingPanel);
                 newsRecyclerView.setAdapter(newsAdapter);
             }
         });
 
         return root;
     }
-
-
 }

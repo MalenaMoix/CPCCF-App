@@ -17,14 +17,23 @@ public class FirestoreDatabase {
     private static final String TAG = "DATABASE CLASS";
     private static final String CHATS = "chats";
     private static final String LECTURER = "lecturer";
+    private static final String GENERAL_NEWS = "generalNews";
+    private static final String LECTURERS_NEWS = "news";
+
     public static final int ERROR_GETTING_ALL_CHATS = -1;
     public static final int ERROR_GETTING_ALL_LECTURERS = -2;
+    public static final int ERROR_GETTING_ALL_GENERAL_NEWS = -3;
+    public static final int ERROR_GETTING_ALL_LECTURERS_NEWS = -4;
     public static final int SUCCESS_GETTING_ALL_CHATS = 10;
     public static final int SUCCESS_GETTING_ALL_LECTURERS = 11;
+    public static final int SUCCESS_GETTING_ALL_GENERAL_NEWS = 12;
+    public static final int SUCCESS_GETTING_ALL_LECTURERS_NEWS = 13;
 
     private FirebaseFirestore firestoreInstance;
     private List<QueryDocumentSnapshot> collectionChats = new ArrayList<>();
     private List<QueryDocumentSnapshot> allLecturers = new ArrayList<>();
+    private List<QueryDocumentSnapshot> allGeneralNews = new ArrayList<>();
+    private List<QueryDocumentSnapshot> allLecturersNews = new ArrayList<>();
 
     public FirestoreDatabase(){
         firestoreInstance = FirebaseFirestore.getInstance();
@@ -73,6 +82,54 @@ public class FirestoreDatabase {
                     Log.w(TAG, "Error getting lecturers.", task.getException());
                     Message message = Message.obtain();
                     message.what = ERROR_GETTING_ALL_LECTURERS;
+                    handler.sendMessage(message);
+                }
+            }
+        });
+    }
+
+    public void getAllGeneralNews (final Handler handler){
+        firestoreInstance.collection(GENERAL_NEWS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot generalNew : task.getResult()) {
+                        Log.d(TAG, generalNew.getId() + " => " + generalNew.getData());
+                        allGeneralNews.add(generalNew);
+                    }
+                    Message message = Message.obtain();
+                    message.what = SUCCESS_GETTING_ALL_GENERAL_NEWS;
+                    message.obj = allGeneralNews;
+                    handler.sendMessage(message);
+                }
+                else {
+                    Log.w(TAG, "Error getting general news.", task.getException());
+                    Message message = Message.obtain();
+                    message.what = ERROR_GETTING_ALL_GENERAL_NEWS;
+                    handler.sendMessage(message);
+                }
+            }
+        });
+    }
+
+    public void getAllLecturersNews (final Handler handler){
+        firestoreInstance.collectionGroup(LECTURERS_NEWS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot lecturerNew : task.getResult()){
+                        Log.d(TAG, lecturerNew.getId() + " => " + lecturerNew.getData());
+                        allLecturersNews.add(lecturerNew);
+                    }
+                    Message message = Message.obtain();
+                    message.what = SUCCESS_GETTING_ALL_LECTURERS_NEWS;
+                    message.obj = allLecturersNews;
+                    handler.sendMessage(message);
+                }
+                else{
+                    Log.w(TAG, "Error getting lecturers news.", task.getException());
+                    Message message = Message.obtain();
+                    message.what = ERROR_GETTING_ALL_LECTURERS_NEWS;
                     handler.sendMessage(message);
                 }
             }
