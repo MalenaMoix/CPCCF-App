@@ -28,10 +28,19 @@
     <string name="street">Calle: </string>
     <string name="city">Ciudad: </string>
     <string name="buses">Colectivos: </string>
-    <string name="txt_title_create_news">Crear una nueva noticia</string>
+    <string name="title_create_news">Crear una nueva noticia</string>
     <string name="txt_title_news">Titulo:</string>
     <string name="txt_content_news">Contenido:</string>
     <string name="hint_title_news">Titulo</string>
     <string name="hint_content_news">Contenido</string>
     <string name="btn_create_news">Nueva noticia</string>
+    <string name="title_create_shedule">Crear una nueva charla</string>
+    <string name="txt_title_create_schedule">Crear Charla</string>
+    <string name="hint_name_schedule">Nombre</string>
+    <string name="btn_date_schedule">Fecha</string>
+    <string name="btn_start_schedule">Inicio</string>
+    <string name="btn_end_schedule">Fin</string>
+    <string name="hint_date_schedule">Fecha de la charla</string>
+    <string name="hint_start_schedule">Hora de inicio</string>
+    <string name="hint_end_schedule">Hora de fin</string>
 </resources>

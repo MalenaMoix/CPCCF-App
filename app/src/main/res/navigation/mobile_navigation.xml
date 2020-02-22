@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
+        android:id="@+id/navigation_create_schedule"
+        android:name="com.ems_development.congreso_pccf.fragments.schedule.CreateScheduleFragment"
+        android:label="@string/title_shedule_of_talks"
+        tools:layout="@layout/fragment_create_schedule" />
+
+    <fragment
         android:id="@+id/navigation_news"
         android:name="com.ems_development.congreso_pccf.fragments.news.NewsFragment"
         android:label="@string/title_news"

@@ -12,12 +12,17 @@
         <item
             android:id="@+id/navigation_create_news"
             android:icon="@drawable/ic_news"
-            android:title="@string/txt_title_create_news"/>
+            android:title="@string/title_create_news"/>
 
         <item
             android:id="@+id/navigation_schedule"
             android:icon="@drawable/ic_cronograma"
             android:title="@string/title_shedule_of_talks" />
+
+        <item
+            android:id="@+id/navigation_create_schedule"
+            android:icon="@drawable/ic_cronograma"
+            android:title="@string/title_create_shedule" />
 
         <item
             android:id="@+id/navigation_home"
