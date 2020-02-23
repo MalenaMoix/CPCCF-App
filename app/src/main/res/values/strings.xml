@@ -34,4 +34,8 @@
     <string name="hint_title_news">Titulo</string>
     <string name="hint_content_news">Contenido</string>
     <string name="btn_create_news">Crear</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="dialog_create_news">Crear noticia</string>
+    <string name="dialog_message">Deseas crear esta noticia?</string>
 </resources>

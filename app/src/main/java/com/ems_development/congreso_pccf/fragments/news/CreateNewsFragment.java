@@ -1,5 +1,6 @@
 package com.ems_development.congreso_pccf.fragments.news;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
@@ -62,7 +64,7 @@ public class CreateNewsFragment extends Fragment {
         firestoreDatabase = new FirestoreDatabase();
 
         createNewsViewModel = ViewModelProviders.of(this).get(CreateNewsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_create_news, container, false);
+        final View root = inflater.inflate(R.layout.fragment_create_news, container, false);
 
         etTitleNews = root.findViewById(R.id.et_title_news);
         etContentNews = root.findViewById(R.id.et_content_news);
@@ -85,10 +87,7 @@ public class CreateNewsFragment extends Fragment {
                 if(isValidateData) {
                     //user = ((ViewForAdminUsersActivity)getActivity()).getCurrentUser();
                     //createNewsViewModel.createNews(title,content,user);
-                    //TODO hacer una pantalla que diga si esta seguro o no
-                    newNews = new News(title, content);
-                    firestoreDatabase.saveNews(handler, newNews);
-                    getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
+                    showAlertDialogForConfirmation();
                 }
             }
         });
@@ -96,7 +95,30 @@ public class CreateNewsFragment extends Fragment {
         title = etTitleNews.getText().toString();
         content = etContentNews.getText().toString();
 
-        //TODO los datos del primer card se encuentran hardcodeados
         return root;
+    }
+
+
+    private void showAlertDialogForConfirmation() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_create_news, null));
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                newNews = new News(title, content);
+                firestoreDatabase.saveNews(handler, newNews);
+                getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
+            }
+        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
