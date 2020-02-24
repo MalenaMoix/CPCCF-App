@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import com.ems_development.congreso_pccf.models.News;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,10 +25,12 @@ public class FirestoreDatabase {
     public static final int ERROR_GETTING_ALL_LECTURERS = -2;
     public static final int ERROR_GETTING_ALL_GENERAL_NEWS = -3;
     public static final int ERROR_GETTING_ALL_LECTURERS_NEWS = -4;
+    public static final int ERROR_SAVING_NEWS = -5;
     public static final int SUCCESS_GETTING_ALL_CHATS = 10;
     public static final int SUCCESS_GETTING_ALL_LECTURERS = 11;
     public static final int SUCCESS_GETTING_ALL_GENERAL_NEWS = 12;
     public static final int SUCCESS_GETTING_ALL_LECTURERS_NEWS = 13;
+    public static final int SUCCESS_SAVING_NEWS = 14;
 
     private FirebaseFirestore firestoreInstance;
     private List<QueryDocumentSnapshot> collectionChats = new ArrayList<>();
@@ -130,6 +133,24 @@ public class FirestoreDatabase {
                     Log.w(TAG, "Error getting lecturers news.", task.getException());
                     Message message = Message.obtain();
                     message.what = ERROR_GETTING_ALL_LECTURERS_NEWS;
+                    handler.sendMessage(message);
+                }
+            }
+        });
+    }
+
+    public void saveNews (final Handler handler, News news){
+        firestoreInstance.collection(GENERAL_NEWS).document().set(news).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Message message = Message.obtain();
+                    message.what = SUCCESS_SAVING_NEWS;
+                    handler.sendMessage(message);
+                }
+                else {
+                    Message message = Message.obtain();
+                    message.what = ERROR_SAVING_NEWS;
                     handler.sendMessage(message);
                 }
             }
