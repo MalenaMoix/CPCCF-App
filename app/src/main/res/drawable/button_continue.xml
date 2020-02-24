@@ -8,7 +8,6 @@
         android:top="10dp"
         android:bottom="10dp"
         android:left="25dp"
-        android:right="25dp"
-        ></padding>
+        android:right="25dp"></padding>
     <solid android:color="@color/pink"/>
 </shape>
