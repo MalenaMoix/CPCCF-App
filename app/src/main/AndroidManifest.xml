@@ -15,28 +15,38 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-      
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activities.ViewForAdminUsersActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+
         </activity>
       
         <activity android:name=".activities.ResetPasswordActivity">
 
         </activity>
 
-        <activity android:name=".activities.LogInActivity">
+<!--        android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+        <activity android:name=".activities.SingUpActivity">
 
         </activity>
 
+
+        <activity android:name=".activities.LogInActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".activities.BottomNavigationViewActivity"
             android:label="@string/title_activity_bottom_navigation_view">
-
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <meta-data
