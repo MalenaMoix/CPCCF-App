@@ -1,6 +1,8 @@
 package com.ems_development.congreso_pccf.fragments.news;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,7 +36,7 @@ public class CreateNewsFragment extends Fragment {
     private CreateNewsViewModel createNewsViewModel;
     private EditText etTitleNews;
     private EditText etContentNews;
-    private Button btnCreateNews;
+    private Button btnCreateNews, ok, cancel;
     private Boolean isValidateData = true;
     private String title;
     private String content;
@@ -100,25 +102,33 @@ public class CreateNewsFragment extends Fragment {
 
 
     private void showAlertDialogForConfirmation() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_create_news, null));
+        final View dialogView = inflater.inflate(R.layout.dialog_create_news, null);
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        ok = dialogView.findViewById(R.id.button_ok);
+        cancel = dialogView.findViewById(R.id.button_cancel);
+
+        ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
                 newNews = new News(title, content);
                 firestoreDatabase.saveNews(handler, newNews);
                 getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
-            }
-        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
+                dialog.dismiss();
             }
         });
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 }
