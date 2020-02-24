@@ -8,7 +8,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-
 public class BottomNavigationViewActivity extends AppCompatActivity {
 
     @Override

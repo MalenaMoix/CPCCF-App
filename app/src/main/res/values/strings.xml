@@ -23,7 +23,19 @@
     <string name="days_for_congress">Dias para el congreso</string>
     <string name="home_news">Novedades</string>
     <string name="home_schedule">Cronograma</string>
+    <string name="btn_general_news">Noticias</string>
+    <string name="btn_lecturer_news">Disertantes</string>
     <string name="street">Calle: </string>
     <string name="city">Ciudad: </string>
     <string name="buses">Colectivos: </string>
+    <string name="txt_title_create_news">Nueva noticia</string>
+    <string name="txt_title_news">Titulo:</string>
+    <string name="txt_content_news">Contenido:</string>
+    <string name="hint_title_news">Titulo</string>
+    <string name="hint_content_news">Contenido</string>
+    <string name="btn_create_news">Crear</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="dialog_create_news">Crear noticia</string>
+    <string name="dialog_message">Desea crear esta noticia?</string>
 </resources>

@@ -15,6 +15,15 @@
       },
       "oauth_client": [
         {
+          "client_id": "208586840630-0r01nd6lacgbh8seo21kn4f427bvn7aq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ems_development.congreso_pccf",
+            "certificate_hash": "bf550370e3779ed17a4f1d832e884d649fdbf3dc"
+          }
+        },
+        {
+
           "client_id": "208586840630-5fmqbv8jequ8ngr34iv992aljn8igrpj.apps.googleusercontent.com",
           "client_type": 3
         }
