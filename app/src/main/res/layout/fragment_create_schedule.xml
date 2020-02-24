@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/txt_title_create_schedule"
+        android:textSize="22sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,12 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:background="@drawable/rectangle_email_password"
+        android:background="@drawable/rectangle_edit_text"
         android:ems="13"
         android:inputType="text"
         android:hint="@string/hint_name_schedule"
         android:textColorHint="@color/light_black"
         android:textColor="@color/black"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -70,8 +73,9 @@
         android:hint="@string/hint_date_schedule"
         android:textColorHint="@color/light_black"
         android:enabled="false"
+        android:padding="5dp"
         android:textColor="@color/black"
-        android:background="@drawable/rectangle_email_password"
+        android:background="@drawable/rectangle_edit_text"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_date_schedule"
         app:layout_constraintEnd_toEndOf="@+id/et_name_schedule" />
 
@@ -84,8 +88,9 @@
         android:hint="@string/hint_start_schedule"
         android:textColorHint="@color/light_black"
         android:enabled="false"
+        android:padding="5dp"
         android:textColor="@color/black"
-        android:background="@drawable/rectangle_email_password"
+        android:background="@drawable/rectangle_edit_text"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_start_schedule"
         app:layout_constraintEnd_toEndOf="@+id/et_date_schedule" />
 
@@ -98,18 +103,20 @@
         android:hint="@string/hint_end_schedule"
         android:textColorHint="@color/light_black"
         android:enabled="false"
+        android:padding="5dp"
         android:textColor="@color/black"
-        android:background="@drawable/rectangle_email_password"
+        android:background="@drawable/rectangle_edit_text"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_end_schedule"
         app:layout_constraintEnd_toEndOf="@+id/et_start_schedule" />
 
-    <Spinner
+    <com.guna.libmultispinner.MultiSelectionSpinner
         android:id="@+id/spinner_lecturers_create_schedule"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle_email_password"
+        android:background="@drawable/rectangle_edit_text"
         app:layout_constraintEnd_toEndOf="@+id/et_end_schedule"
         app:layout_constraintStart_toStartOf="@+id/btn_end_schedule"
-        app:layout_constraintTop_toBottomOf="@+id/btn_end_schedule" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_end_schedule"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

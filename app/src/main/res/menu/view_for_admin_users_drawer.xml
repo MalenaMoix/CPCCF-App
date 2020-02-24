@@ -3,41 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/navigation_news"
-            android:icon="@drawable/ic_news"
-            android:title="@string/title_news"/>
-
-        <item
-            android:id="@+id/navigation_create_news"
-            android:icon="@drawable/ic_news"
-            android:title="@string/title_create_news"/>
-
-        <item
-            android:id="@+id/navigation_schedule"
-            android:icon="@drawable/ic_cronograma"
-            android:title="@string/title_shedule_of_talks" />
-
-        <item
-            android:id="@+id/navigation_create_schedule"
-            android:icon="@drawable/ic_cronograma"
-            android:title="@string/title_create_shedule" />
-
-        <item
-            android:id="@+id/navigation_home"
-            android:icon="@drawable/ic_home"
-            android:title="@string/title_home" />
-
-        <item
-            android:id="@+id/navigation_location"
-            android:icon="@drawable/ic_location"
-            android:title="@string/title_location" />
-
-        <item
-            android:id="@+id/navigation_profile"
-            android:icon="@drawable/ic_profile"
-            android:title="@string/title_profile" />
+    <group
+        android:id="@+id/menu_admin_user"
+        android:checkableBehavior="single">
+        <item android:title="Funciones de administración">
+            <menu>
+                <item
+                    android:id="@+id/navigation_create_news"
+                    android:icon="@drawable/ic_news"
+                    android:title="@string/title_create_news"/>
+                <item
+                    android:id="@+id/navigation_create_schedule"
+                    android:icon="@drawable/ic_cronograma"
+                    android:title="@string/title_create_shedule" />
+            </menu>
+        </item>
     </group>
+    <group
+        android:id="@+id/menu_general_user"
+        android:checkableBehavior="none">
+            <item
+                android:id="@+id/navigation_news"
+                android:icon="@drawable/ic_news"
+                android:title="@string/title_news"/>
+            <item
+                android:id="@+id/navigation_schedule"
+                android:icon="@drawable/ic_cronograma"
+                android:title="@string/title_shedule_of_talks" />
+            <item
+                android:id="@+id/navigation_home"
+                android:icon="@drawable/ic_home"
+                android:title="@string/title_home" />
 
+            <item
+                android:id="@+id/navigation_location"
+                android:icon="@drawable/ic_location"
+                android:title="@string/title_location" />
+
+            <item
+                android:id="@+id/navigation_profile"
+                android:icon="@drawable/ic_profile"
+                android:title="@string/title_profile" />
+    </group>
 </menu>
