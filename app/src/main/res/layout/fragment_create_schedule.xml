@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/txt_title_create_schedule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_name_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rectangle_email_password"
+        android:ems="13"
+        android:inputType="text"
+        android:hint="@string/hint_name_schedule"
+        android:textColorHint="@color/light_black"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_date_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_date_schedule"
+        android:background="@drawable/general_button_radius"
+        app:layout_constraintStart_toStartOf="@+id/et_name_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/et_name_schedule" />
+
+    <Button
+        android:id="@+id/btn_start_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_start_schedule"
+        android:background="@drawable/general_button_radius"
+        app:layout_constraintStart_toStartOf="@+id/btn_date_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/btn_date_schedule" />
+
+    <Button
+        android:id="@+id/btn_end_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_end_schedule"
+        android:background="@drawable/general_button_radius"
+        app:layout_constraintStart_toStartOf="@+id/btn_start_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start_schedule" />
+
+    <EditText
+        android:id="@+id/et_date_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="text"
+        android:hint="@string/hint_date_schedule"
+        android:textColorHint="@color/light_black"
+        android:enabled="false"
+        android:textColor="@color/black"
+        android:background="@drawable/rectangle_email_password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_date_schedule"
+        app:layout_constraintEnd_toEndOf="@+id/et_name_schedule" />
+
+    <EditText
+        android:id="@+id/et_start_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="text"
+        android:hint="@string/hint_start_schedule"
+        android:textColorHint="@color/light_black"
+        android:enabled="false"
+        android:textColor="@color/black"
+        android:background="@drawable/rectangle_email_password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_start_schedule"
+        app:layout_constraintEnd_toEndOf="@+id/et_date_schedule" />
+
+    <EditText
+        android:id="@+id/et_end_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="text"
+        android:hint="@string/hint_end_schedule"
+        android:textColorHint="@color/light_black"
+        android:enabled="false"
+        android:textColor="@color/black"
+        android:background="@drawable/rectangle_email_password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_end_schedule"
+        app:layout_constraintEnd_toEndOf="@+id/et_start_schedule" />
+</androidx.constraintlayout.widget.ConstraintLayout>
