@@ -1,18 +1,23 @@
 package com.ems_development.congreso_pccf.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.ems_development.congreso_pccf.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
+    private static final String TAG = "Reset Password";
     EditText email;
     Button sendEmail;
 
@@ -44,15 +49,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     protected void sendResetPasswordEmail (String emailEntered){
-        //TODO Santiago tiene que descmentar este codigo
-        /*FirebaseAuth.getInstance().sendPasswordResetEmail(emailEntered)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent");
-                        }
-                    }
-                });*/
+        FirebaseAuth.getInstance().sendPasswordResetEmail(emailEntered).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Email sent");
+                }
+            }
+        });
     }
 }
