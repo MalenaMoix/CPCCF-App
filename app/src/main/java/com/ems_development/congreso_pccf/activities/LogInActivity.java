@@ -17,10 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
-    
+
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
 
@@ -40,6 +41,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.create_account).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseMessaging.getInstance().subscribeToTopic("general").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Log.d("FIREBASE MESSAGING", "Subscripcion exitosa.");
+                }
+                else{
+                    Log.w("FIREBASE MESSAGING", "Fallo en la subscripcion");
+                }
+            }
+        });
     }
 
     @Override

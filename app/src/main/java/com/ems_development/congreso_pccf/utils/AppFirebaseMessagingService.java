@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
