@@ -40,6 +40,7 @@ public class FirestoreDatabase {
     private List<QueryDocumentSnapshot> allLecturers = new ArrayList<>();
     private List<QueryDocumentSnapshot> allGeneralNews = new ArrayList<>();
     private List<QueryDocumentSnapshot> allLecturersNews = new ArrayList<>();
+    private List<QueryDocumentSnapshot> admins = new ArrayList<>();
 
     public FirestoreDatabase(){
         firestoreInstance = FirebaseFirestore.getInstance();
@@ -167,11 +168,11 @@ public class FirestoreDatabase {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot admin : task.getResult()) {
                         Log.d(TAG, admin.getId() + " => " + admin.getData());
-                        allGeneralNews.add(admin);
+                        admins.add(admin);
                     }
                     Message message = Message.obtain();
                     message.what = SUCCESS_GETTING_ADMINS;
-                    message.obj = allGeneralNews;
+                    message.obj = admins;
                     handler.sendMessage(message);
                 }
                 else {
