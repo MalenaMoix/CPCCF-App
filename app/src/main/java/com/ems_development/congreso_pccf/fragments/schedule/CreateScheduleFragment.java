@@ -12,9 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
@@ -22,7 +25,6 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.ems_development.congreso_pccf.R;
-import com.ems_development.congreso_pccf.adapters.schedule.ScheduleViewHolder;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -45,6 +47,8 @@ public class CreateScheduleFragment extends Fragment {
     private Button btnEnd;
     private EditText etEnd;
     private int day, month, year, hour, minute;
+    private Spinner spinner_lecturers;
+    private List<String> listFullnameLecturers = new ArrayList<String>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +66,7 @@ public class CreateScheduleFragment extends Fragment {
         etDate = root.findViewById(R.id.et_date_schedule);
         etStart = root.findViewById(R.id.et_start_schedule);
         etEnd = root.findViewById(R.id.et_end_schedule);
+        spinner_lecturers = root.findViewById(R.id.spinner_lecturers_create_schedule);
 
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,10 +120,23 @@ public class CreateScheduleFragment extends Fragment {
             }
         });
 
+        spinner_lecturers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
 
         return root;
     }
+
 
     private final Handler handler = new Handler(Looper.myLooper()){
         @Override
@@ -127,8 +145,15 @@ public class CreateScheduleFragment extends Fragment {
                 case FirestoreDatabase.SUCCESS_GETTING_ALL_LECTURERS:
                     Log.d(TAG, "Se recuperaron todas los disertantes.");
                     lecturers = (List<QueryDocumentSnapshot>) msg.obj;
-                    notifyDataSetChanged();
-                    loadingPanel.setVisibility(View.GONE);
+
+                    for (QueryDocumentSnapshot lecturer : lecturers) {
+                        listFullnameLecturers.add(lecturer.get("name") + " " + lecturer.get("lastName"));
+                    }
+
+                    spinner_lecturers = getActivity().findViewById(R.id.spinner_lecturers_create_schedule);
+                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, listFullnameLecturers);
+                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_lecturers.setAdapter(spinnerAdapter);
                     break;
                 case FirestoreDatabase.ERROR_GETTING_ALL_LECTURERS:
                     Log.w(TAG, "Error al recuperar todos los disertantes.");
