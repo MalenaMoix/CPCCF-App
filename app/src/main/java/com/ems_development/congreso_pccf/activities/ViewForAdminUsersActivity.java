@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.ems_development.congreso_pccf.R;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
@@ -13,8 +16,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.ems_development.congreso_pccf.data.FirebaseCloudStorage;
-import com.ems_development.congreso_pccf.models.User;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,7 +31,9 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private AppBarConfiguration mAppBarConfiguration;
     private ImageView profilePicture;
+    private TextView userEmail;
     private View navHeaderAdmin;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +51,9 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        //TODO encontrar la imagen
         navHeaderAdmin = navigationView.getHeaderView(0);
         profilePicture = navHeaderAdmin.findViewById(R.id.image_view_current_user);
+        userEmail = navHeaderAdmin.findViewById(R.id.txt_user_email);
 
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +61,16 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
                 takePicture();
             }
         });
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            if (user.getPhotoUrl() != null){
+                Glide.with(this).load(user.getPhotoUrl()).into(profilePicture);
+            }
+            if (user.getEmail() != null){
+                userEmail.setText(user.getEmail());
+            }
+        }
     }
 
     private void takePicture (){
