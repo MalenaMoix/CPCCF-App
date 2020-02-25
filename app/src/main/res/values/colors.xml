@@ -5,11 +5,17 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--Colores utilizados en Figma-->
-    <color name="violeta">#726197</color>
-    <color name="crema">#FCDEBE</color>
-    <color name="blanco">#FFFFFF</color>
-    <color name="gris">#7C7168</color>
-    <color name="lila">#BAABDA</color>
-    <color name="azulLetras">#3581B8</color>
-    <color name="azulCardPronostico">#3B8CC6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="pink">#EA9ABB</color>
+    <color name="light_grey">#F1F1F6</color>
+    <color name="violet">#726197</color>
+    <color name="dark_grey">#8F8F8F</color>
+    <color name="light_black">#3C3C3C</color>
+    <color name="grey">#D8D8D8</color>
+    <color name="lilac">#BE8ABF</color>
+    <color name="almost_grey">#BDBDBD</color>
+    <color name="grey_divider">#DFDFDF</color>
+    <color name="background">#FCF3FF</color>
+    <color name="violet_title_map">#9280BD</color>
 </resources>

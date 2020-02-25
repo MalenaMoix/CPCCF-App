@@ -6,4 +6,34 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="welcome">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="congress_arg">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
+
+    <style name="patients">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
+
+    <style name="create_account">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/violet</item>
+    </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
