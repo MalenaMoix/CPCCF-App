@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.ems_development.congreso_pccf.R;
 import androidx.annotation.Nullable;
@@ -25,8 +24,6 @@ import androidx.appcompat.widget.Toolbar;
 
 
 public class ViewForAdminUsersActivity extends AppCompatActivity {
-
-    //TODO Cambiar "Novedades" por "Noticias" en el Drawer de Admin y en el Bottom Nav Bar para usuarios comunes
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private AppBarConfiguration mAppBarConfiguration;
