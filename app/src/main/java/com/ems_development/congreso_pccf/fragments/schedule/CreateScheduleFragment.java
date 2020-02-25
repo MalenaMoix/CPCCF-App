@@ -1,9 +1,12 @@
 package com.ems_development.congreso_pccf.fragments.schedule;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -47,8 +51,8 @@ public class CreateScheduleFragment extends Fragment {
     private Button btnEnd;
     private EditText etEnd;
     private int day, month, year, hour, minute;
-    private Spinner spinner_lecturers;
     private List<String> listFullnameLecturers = new ArrayList<String>();
+    private ListView selection_lecturers = new ListView(getContext());
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,7 +70,28 @@ public class CreateScheduleFragment extends Fragment {
         etDate = root.findViewById(R.id.et_date_schedule);
         etStart = root.findViewById(R.id.et_start_schedule);
         etEnd = root.findViewById(R.id.et_end_schedule);
-        spinner_lecturers = root.findViewById(R.id.spinner_lecturers_create_schedule);
+
+        AlertDialog.Builder builderSelection = new AlertDialog.Builder(root.getContext());
+        builderSelection.setTitle("Select");
+        builderSelection.setView(selection_lecturers);
+        builderSelection.setPositiveButton("Done",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builderSelection.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        final Dialog dialogSelection = builderSelection.create();
+        dialogSelection.show();
+
 
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,14 +145,10 @@ public class CreateScheduleFragment extends Fragment {
             }
         });
 
-        spinner_lecturers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        selection_lecturers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -150,10 +171,10 @@ public class CreateScheduleFragment extends Fragment {
                         listFullnameLecturers.add(lecturer.get("name") + " " + lecturer.get("lastName"));
                     }
 
-                    spinner_lecturers = getActivity().findViewById(R.id.spinner_lecturers_create_schedule);
-                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, listFullnameLecturers);
-                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner_lecturers.setAdapter(spinnerAdapter);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_multiple_choice, listFullnameLecturers);
+                    selection_lecturers.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    selection_lecturers.setAdapter(adapter);
+
                     break;
                 case FirestoreDatabase.ERROR_GETTING_ALL_LECTURERS:
                     Log.w(TAG, "Error al recuperar todos los disertantes.");
