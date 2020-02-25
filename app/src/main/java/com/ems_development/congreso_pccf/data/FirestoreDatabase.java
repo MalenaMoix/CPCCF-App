@@ -48,7 +48,7 @@ public class FirestoreDatabase {
 
 
     public void getAllChats(final Handler handler){
-        firestoreInstance.collection(CHATS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        firestoreInstance.collection(CHATS).orderBy("startDate").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
