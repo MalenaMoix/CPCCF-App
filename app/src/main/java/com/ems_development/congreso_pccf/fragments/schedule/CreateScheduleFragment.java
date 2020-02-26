@@ -279,8 +279,8 @@ public class CreateScheduleFragment extends Fragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Chat newSchedule = new Chat(name, startDate, endDate);
-                firestoreDatabase.saveSchedule(handler, newSchedule);
+                //Chat newSchedule = new Chat(name, startDate, endDate);
+                //firestoreDatabase.saveSchedule(handler, newSchedule);
                 getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
                 dialog.dismiss();
             }
