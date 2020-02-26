@@ -6,44 +6,63 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.ems_development.congreso_pccf.R;
+import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class LogInActivity extends AppCompatActivity implements
-        View.OnClickListener {
+public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    private static final String TAG = "Log In Activity";
+    public static final int RESET_PASSWORD = 1;
+    private static int isAdmin = 0;
     private FirebaseAuth mAuth;
+    private FirestoreDatabase firestoreDatabase;
+    private EditText emailField, passwordField;
+    private List<QueryDocumentSnapshot> admins = new ArrayList<>();
 
-    private static final String TAG = "EmailPassword";
-
-    EditText emailField, passwordField;
-    TextView createAccount, forgotPassword;
-    private Button next;
-    static final int RESET_PASSWORD = 1;
+    private Handler handler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what){
+                case FirestoreDatabase.SUCCESS_GETTING_ADMINS:
+                    Log.d(TAG, "Se recuperaron todos los admins");
+                    admins = (List<QueryDocumentSnapshot>) msg.obj;
+                    break;
+                case FirestoreDatabase.ERROR_GETTING_ADMINS:
+                    Log.w(TAG, "Error al recuperar los admins");
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        firestoreDatabase = new FirestoreDatabase();
+        firestoreDatabase.getAdmins(handler);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
-//        createAccount = findViewById(R.id.create_account);
-//        forgotPassword = findViewById(R.id.forgot_password);
-//        next = findViewById(R.id.button_continue);
 
         findViewById(R.id.button_continue).setOnClickListener(this);
         findViewById(R.id.forgot_password).setOnClickListener(this);
@@ -51,48 +70,26 @@ public class LogInActivity extends AppCompatActivity implements
 
         mAuth = FirebaseAuth.getInstance();
 
-//        createAccount.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //TODO Santiago debe llamar a la actividad registrar usuario
-//                    startActivityForResult(new Intent(LogInActivity.this, SingUpActivity.class),1);
-//
-//            }
-//        });
+        FirebaseMessaging.getInstance().subscribeToTopic("general").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Log.d("FIREBASE MESSAGING", "Subscripcion exitosa.");
+                }
+                else{
+                    Log.w("FIREBASE MESSAGING", "Fallo en la subscripcion");
+                }
+            }
+        });
+    }
 
-//        next.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String emailEntered = email.getText().toString();
-//                String passwordEntered = password.getText().toString();
-//
-//                email.setError(null);
-//                password.setError(null);
-//
-//                if (emailEntered.isEmpty()){
-//                    emailField.setError("Debe ingresar su email");
-//                    email.requestFocus();
-//                }
-//                else if (passwordEntered.isEmpty()){
-//                    password.setError("Debe ingresar su contraseña");
-//                    password.requestFocus();
-//                }
-//                else if (!(emailEntered.isEmpty() && passwordEntered.isEmpty())){
-//                    //TODO Santiago debe verificar el Sign In con Firebase
-//                }
-//                else {
-//                    Toast.makeText(LogInActivity.this, "Error, por favor intente de nuevo", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
-
-//        forgotPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivityForResult(new Intent(LogInActivity.this, ResetPasswordActivity.class), RESET_PASSWORD);
-//            }
-//        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isAdmin = 0;
+        emailField.requestFocus();
+        emailField.setText(null);
+        passwordField.setText(null);
     }
 
     @Override
@@ -108,9 +105,7 @@ public class LogInActivity extends AppCompatActivity implements
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-//        updateUI(currentUser);
     }
 
 
@@ -120,37 +115,32 @@ public class LogInActivity extends AppCompatActivity implements
             return;
         }
 
-//        showProgressDialog();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
 
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
-                            startActivityForResult(new Intent(LogInActivity.this, BottomNavigationViewActivity.class),1);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LogInActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                    for (DocumentSnapshot admin : admins){
+                        if (admin.get("email").equals(user.getEmail())){
+                            isAdmin = 1;
                         }
-
-                        // [START_EXCLUDE]
-                        if (!task.isSuccessful()) {
-//                            mStatusTextView.setText(R.string.auth_failed);
-
-                        }
-//                        hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
-                });
-        // [END sign_in_with_email]
+
+                    if (isAdmin == 1){
+                        startActivity(new Intent(LogInActivity.this, ViewForAdminUsersActivity.class));
+                    }
+                    else {
+                        startActivity(new Intent(LogInActivity.this, BottomNavigationViewActivity.class));
+                    }
+
+                }
+                else {
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                    Toast.makeText(LogInActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private boolean validateForm() {
@@ -186,5 +176,4 @@ public class LogInActivity extends AppCompatActivity implements
             startActivityForResult(new Intent(LogInActivity.this, ResetPasswordActivity.class), RESET_PASSWORD);
         }
     }
-
 }

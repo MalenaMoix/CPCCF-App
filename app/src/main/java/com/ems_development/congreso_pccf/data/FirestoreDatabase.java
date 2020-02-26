@@ -20,23 +20,27 @@ public class FirestoreDatabase {
     private static final String LECTURER = "lecturer";
     private static final String GENERAL_NEWS = "generalNews";
     private static final String LECTURERS_NEWS = "news";
+    private static final String ADMINS = "admins";
 
     public static final int ERROR_GETTING_ALL_CHATS = -1;
     public static final int ERROR_GETTING_ALL_LECTURERS = -2;
     public static final int ERROR_GETTING_ALL_GENERAL_NEWS = -3;
     public static final int ERROR_GETTING_ALL_LECTURERS_NEWS = -4;
     public static final int ERROR_SAVING_NEWS = -5;
+    public static final int ERROR_GETTING_ADMINS = -6;
     public static final int SUCCESS_GETTING_ALL_CHATS = 10;
     public static final int SUCCESS_GETTING_ALL_LECTURERS = 11;
     public static final int SUCCESS_GETTING_ALL_GENERAL_NEWS = 12;
     public static final int SUCCESS_GETTING_ALL_LECTURERS_NEWS = 13;
     public static final int SUCCESS_SAVING_NEWS = 14;
+    public static final int SUCCESS_GETTING_ADMINS = 15;
 
     private FirebaseFirestore firestoreInstance;
     private List<QueryDocumentSnapshot> collectionChats = new ArrayList<>();
     private List<QueryDocumentSnapshot> allLecturers = new ArrayList<>();
     private List<QueryDocumentSnapshot> allGeneralNews = new ArrayList<>();
     private List<QueryDocumentSnapshot> allLecturersNews = new ArrayList<>();
+    private List<QueryDocumentSnapshot> admins = new ArrayList<>();
 
     public FirestoreDatabase(){
         firestoreInstance = FirebaseFirestore.getInstance();
@@ -151,6 +155,30 @@ public class FirestoreDatabase {
                 else {
                     Message message = Message.obtain();
                     message.what = ERROR_SAVING_NEWS;
+                    handler.sendMessage(message);
+                }
+            }
+        });
+    }
+
+    public void getAdmins (final Handler handler){
+        firestoreInstance.collection(ADMINS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot admin : task.getResult()) {
+                        Log.d(TAG, admin.getId() + " => " + admin.getData());
+                        admins.add(admin);
+                    }
+                    Message message = Message.obtain();
+                    message.what = SUCCESS_GETTING_ADMINS;
+                    message.obj = admins;
+                    handler.sendMessage(message);
+                }
+                else {
+                    Log.w(TAG, "Error getting admins.", task.getException());
+                    Message message = Message.obtain();
+                    message.what = ERROR_GETTING_ADMINS;
                     handler.sendMessage(message);
                 }
             }
