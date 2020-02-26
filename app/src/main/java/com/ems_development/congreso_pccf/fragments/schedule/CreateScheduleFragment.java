@@ -31,6 +31,7 @@ import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
 import com.ems_development.congreso_pccf.models.Chat;
+import com.ems_development.congreso_pccf.models.Lecturer;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.time.LocalTime;
@@ -42,6 +43,7 @@ public class CreateScheduleFragment extends Fragment {
 
     private static final String TAG = "SCHEDULE ADAPTER";
     private List<QueryDocumentSnapshot> lecturers = new ArrayList<>();
+    private List<Lecturer> lecturersSaved = new ArrayList<>();
     private FirestoreDatabase firestoreDatabase;
 
     private CreateScheduleViewModel createScheduleViewModel;
@@ -273,10 +275,20 @@ public class CreateScheduleFragment extends Fragment {
         ok = dialogView.findViewById(R.id.button_ok_chat);
         cancel = dialogView.findViewById(R.id.button_cancel_chat);
 
+        for(int i = 0; i < selectedLecturers.size(); i++) {
+            Lecturer lecturer = new Lecturer();
+            lecturer.setName(lecturers.get(selectedLecturers.get(i)).get("name").toString());
+            lecturer.setBirthDate(lecturers.get(selectedLecturers.get(i)).get("birthDate").toString());
+            lecturer.setLastName(lecturers.get(selectedLecturers.get(i)).get("lastName").toString());
+            lecturer.setUniversityDegrees(lecturers.get(selectedLecturers.get(i)).get("universityDegrees").toString());
+            lecturer.setLocation(lecturers.get(selectedLecturers.get(i)).get("location").toString());
+            lecturersSaved.add(lecturer);
+        }
+
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Chat newSchedule = new Chat(name, starthour, endHour, chatRoom);
+                Chat newSchedule = new Chat(name, starthour, endHour, chatRoom, lecturersSaved);
                 firestoreDatabase.saveChat(handler, newSchedule);
                 getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
                 dialog.dismiss();

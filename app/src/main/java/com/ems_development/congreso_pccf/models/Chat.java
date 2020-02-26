@@ -1,5 +1,7 @@
 package com.ems_development.congreso_pccf.models;
 
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class Chat {
         users = new ArrayList<>();
     }
 
-    public Chat (String chatName, String start, String end, String room){
-        lecturerList = new ArrayList<>();
+    public Chat (String chatName, String start, String end, String room, List<Lecturer> lecturers){
+        this.lecturerList = lecturers;
         users = new ArrayList<>();
         this.name = chatName;
         this.startDate = start;

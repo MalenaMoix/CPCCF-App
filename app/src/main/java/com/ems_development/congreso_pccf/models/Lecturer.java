@@ -8,7 +8,7 @@ public class Lecturer {
     private String name;
     private String lastName;
     private String universityDegrees;
-    private LocalDate birthDate;
+    private String birthDate;
     private News news;
     private String location;
     private List<Chat> chats;
@@ -40,11 +40,11 @@ public class Lecturer {
         this.universityDegrees = universityDegrees;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
