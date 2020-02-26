@@ -1,6 +1,5 @@
 package com.ems_development.congreso_pccf.fragments.news;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,11 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.ems_development.congreso_pccf.R;
-import com.ems_development.congreso_pccf.activities.ViewForAdminUsersActivity;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
 import com.ems_development.congreso_pccf.models.News;
@@ -111,8 +108,8 @@ public class CreateNewsFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        ok = dialogView.findViewById(R.id.button_ok);
-        cancel = dialogView.findViewById(R.id.button_cancel);
+        ok = dialogView.findViewById(R.id.button_ok_news);
+        cancel = dialogView.findViewById(R.id.button_cancel_news);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

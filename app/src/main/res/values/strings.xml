@@ -38,7 +38,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="dialog_create_news">Crear noticia</string>
-    <string name="dialog_message">Desea crear esta noticia?</string>
+    <string name="dialog_news_message">Desea crear esta noticia?</string>
+    <string name="dialog_chat_message">Desea crear esta charla?</string>
     <string name="title_create_shedule">Crear charla</string>
     <string name="txt_title_create_schedule">Nueva Charla</string>
     <string name="hint_name_schedule">Nombre</string>
@@ -52,4 +53,5 @@
     <string name="get_started">Comencemos</string>
     <string name="already_have_account">ya tienes una cuenta?</string>
     <string name="btn_add_lecturers">Agregar disertantes</string>
+    <string name="chat_room">Lugar</string>
 </resources>

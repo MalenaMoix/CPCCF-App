@@ -21,7 +21,7 @@
             android:paddingBottom="20dp">
 
             <Button
-                android:id="@+id/button_ok_news"
+                android:id="@+id/button_ok_chat"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -34,11 +34,11 @@
                 android:textSize="12sp"
                 app:fontFamily="@font/raleway_semibold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button_cancel_news"
+                app:layout_constraintStart_toEndOf="@+id/button_cancel_chat"
                 app:layout_constraintTop_toBottomOf="@+id/dialog_message" />
 
             <Button
-                android:id="@+id/button_cancel_news"
+                android:id="@+id/button_cancel_chat"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -65,7 +65,7 @@
                 android:scaleType="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_violet_news" />
+                app:srcCompat="@drawable/ic_calendar_violet" />
 
             <TextView
                 android:id="@+id/dialog_message"
@@ -74,7 +74,7 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/dialog_news_message"
+                android:text="@string/dialog_chat_message"
                 android:textColor="@color/dark_grey"
                 app:fontFamily="@font/raleway"
                 app:layout_constraintStart_toStartOf="@+id/image_news"
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:text="@string/dialog_create_news"
+                android:text="@string/title_create_shedule"
                 android:textColor="@color/light_black"
                 android:textSize="17sp"
                 app:fontFamily="@font/raleway_bold"

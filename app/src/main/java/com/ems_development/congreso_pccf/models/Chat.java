@@ -1,18 +1,29 @@
 package com.ems_development.congreso_pccf.models;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Chat {
 
     private String name;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private String startDate;
+    private String endDate;
     private String chatRoom;
     private List<Lecturer> lecturerList;
     private List<User> users;
 
     public Chat() {
+        lecturerList = new ArrayList<>();
+        users = new ArrayList<>();
+    }
+
+    public Chat (String chatName, String start, String end, String room){
+        lecturerList = new ArrayList<>();
+        users = new ArrayList<>();
+        this.name = chatName;
+        this.startDate = start;
+        this.endDate = end;
+        this.chatRoom = room;
     }
 
     public String getName() {
@@ -23,19 +34,19 @@ public class Chat {
         this.name = name;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

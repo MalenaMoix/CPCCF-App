@@ -5,12 +5,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.icu.util.LocaleData;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,13 +18,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
@@ -34,14 +28,12 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.ems_development.congreso_pccf.R;
-import com.ems_development.congreso_pccf.activities.ViewForAdminUsersActivity;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
 import com.ems_development.congreso_pccf.models.Chat;
-import com.ems_development.congreso_pccf.models.News;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -54,7 +46,7 @@ public class CreateScheduleFragment extends Fragment {
 
     private CreateScheduleViewModel createScheduleViewModel;
     private Button btnCreateNews, ok, cancel;
-    private EditText etName;
+    private EditText etName, etChatRoom;
     private Button btnDate;
     private EditText etDate;
     private Button btnStart;
@@ -62,7 +54,8 @@ public class CreateScheduleFragment extends Fragment {
     private Button btnEnd;
     private EditText etEnd;
     private int day, month, year, hourStart, hourEnd, minuteStart, minuteEnd;
-    private LocalDateTime startDate, endDate;
+    private LocalTime startDate;
+    private LocalTime endDate;
     private String[] listFullnameLecturers;
     private boolean[] checkedLecturers;
     private List<Integer> selectedLecturers = new ArrayList<>();
@@ -70,7 +63,7 @@ public class CreateScheduleFragment extends Fragment {
     private EditText etSelectedLecturers;
     private Button btnCreateSchedule;
     private Boolean isValidateData = true;
-    private String name, date, starthour, endHour, lecturerList;
+    private String name, date, starthour, endHour, lecturerList, chatRoom;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,10 +75,11 @@ public class CreateScheduleFragment extends Fragment {
         firestoreDatabase.getAllLecturers(handler);
 
         etName = root.findViewById(R.id.et_name_schedule);
+        etChatRoom = root.findViewById(R.id.editText_chat_room);
         btnDate = root.findViewById(R.id.btn_date_schedule);
         btnStart = root.findViewById(R.id.btn_start_schedule);
         btnEnd = root.findViewById(R.id.btn_end_schedule);
-        etDate = root.findViewById(R.id.et_date_schedule);
+        //etDate = root.findViewById(R.id.et_date_schedule);
         etStart = root.findViewById(R.id.et_start_schedule);
         etEnd = root.findViewById(R.id.et_end_schedule);
         btnLecturers = root.findViewById(R.id.btn_select_lecturers);
@@ -100,10 +94,10 @@ public class CreateScheduleFragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(root.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
-                        etDate.setText(selectedDay + "/" + (selectedMonth+1) + "/" + selectedYear);
-                        day = selectedDay;
-                        month = selectedMonth-1;
-                        year = selectedYear;
+                        //etDate.setText(selectedDay + "/" + (selectedMonth+1) + "/" + selectedYear);
+                        //day = selectedDay;
+                        //month = selectedMonth-1;
+                        //year = selectedYear;
                     }
                 },date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR));
                 datePickerDialog.show();
@@ -205,7 +199,8 @@ public class CreateScheduleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 name = etName.getText().toString();
-                date = etDate.getText().toString();
+                chatRoom = etChatRoom.getText().toString();
+                //date = etDate.getText().toString();
                 starthour = etStart.getText().toString();
                 endHour = etEnd.getText().toString();
                 lecturerList = etSelectedLecturers.getText().toString();
@@ -214,10 +209,14 @@ public class CreateScheduleFragment extends Fragment {
                     etName.setError("Se debe agregar un nombre a la charla");
                     isValidateData = false;
                 }
-                if (date.isEmpty()) {
-                    etDate.setError("Se debe seleccionar una fecha para la charla");
+                if (chatRoom.isEmpty()) {
+                    etName.setError("Se debe agregar un lugar a la charla");
                     isValidateData = false;
                 }
+                /*if (date.isEmpty()) {
+                    etDate.setError("Se debe seleccionar una fecha para la charla");
+                    isValidateData = false;
+                }*/
                 if (starthour.isEmpty()) {
                     etStart.setError("Se debe seleccionar una hora de inicio para la charla");
                     isValidateData = false;
@@ -231,8 +230,6 @@ public class CreateScheduleFragment extends Fragment {
                     isValidateData = false;
                 }
                 if (isValidateData) {
-                    startDate = LocalDateTime.of(year,month,day,hourStart,minuteStart);
-                    endDate = LocalDateTime.of(year,month,day,hourEnd,minuteEnd);
                     showAlertDialogForConfirmation();
                 }
             }
@@ -265,7 +262,7 @@ public class CreateScheduleFragment extends Fragment {
 
     private void showAlertDialogForConfirmation() {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.dialog_create_news, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_create_chat, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(dialogView);
@@ -273,14 +270,14 @@ public class CreateScheduleFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        ok = dialogView.findViewById(R.id.button_ok);
-        cancel = dialogView.findViewById(R.id.button_cancel);
+        ok = dialogView.findViewById(R.id.button_ok_chat);
+        cancel = dialogView.findViewById(R.id.button_cancel_chat);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Chat newSchedule = new Chat(name, startDate, endDate);
-                //firestoreDatabase.saveSchedule(handler, newSchedule);
+                Chat newSchedule = new Chat(name, starthour, endHour, chatRoom);
+                firestoreDatabase.saveChat(handler, newSchedule);
                 getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
                 dialog.dismiss();
             }
