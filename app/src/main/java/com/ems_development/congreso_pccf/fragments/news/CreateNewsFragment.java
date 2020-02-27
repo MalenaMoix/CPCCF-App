@@ -13,18 +13,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
 import com.ems_development.congreso_pccf.models.News;
-import com.ems_development.congreso_pccf.models.User;
 
 
 public class CreateNewsFragment extends Fragment {
@@ -38,7 +35,6 @@ public class CreateNewsFragment extends Fragment {
     private String title;
     private String content;
     private FirestoreDatabase firestoreDatabase;
-    private User user;
     private News newNews;
 
     private final Handler handler = new Handler(Looper.myLooper()){
@@ -84,8 +80,6 @@ public class CreateNewsFragment extends Fragment {
                     isValidateData = false;
                 }
                 if(isValidateData) {
-                    //user = ((ViewForAdminUsersActivity)getActivity()).getCurrentUser();
-                    //createNewsViewModel.createNews(title,content,user);
                     showAlertDialogForConfirmation();
                 }
             }

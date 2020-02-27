@@ -3,7 +3,6 @@ package com.ems_development.congreso_pccf.fragments.schedule;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -22,50 +21,67 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.ems_development.congreso_pccf.R;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
 import com.ems_development.congreso_pccf.models.Chat;
 import com.ems_development.congreso_pccf.models.Lecturer;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 
 public class CreateScheduleFragment extends Fragment {
 
     private static final String TAG = "SCHEDULE ADAPTER";
     private List<QueryDocumentSnapshot> lecturers = new ArrayList<>();
     private List<Lecturer> lecturersSaved = new ArrayList<>();
-    private FirestoreDatabase firestoreDatabase;
-
-    private CreateScheduleViewModel createScheduleViewModel;
-    private Button btnCreateNews, ok, cancel;
-    private EditText etName, etChatRoom;
-    private Button btnDate;
-    private EditText etDate;
-    private Button btnStart;
-    private EditText etStart;
-    private Button btnEnd;
-    private EditText etEnd;
-    private int day, month, year, hourStart, hourEnd, minuteStart, minuteEnd;
-    private LocalTime startDate;
-    private LocalTime endDate;
     private String[] listFullnameLecturers;
     private boolean[] checkedLecturers;
     private List<Integer> selectedLecturers = new ArrayList<>();
-    private Button btnLecturers;
-    private EditText etSelectedLecturers;
-    private Button btnCreateSchedule;
+
+    private CreateScheduleViewModel createScheduleViewModel;
+    private FirestoreDatabase firestoreDatabase;
+    private Button btnCreateNews, ok, cancel, btnDate, btnStart, btnEnd, btnLecturers, btnCreateSchedule;
+    private EditText etName, etChatRoom, etDate, etStart, etEnd, etSelectedLecturers;
+    private int hourStart, hourEnd, minuteStart, minuteEnd;
     private Boolean isValidateData = true;
-    private String name, date, starthour, endHour, lecturerList, chatRoom;
+    private String name, starthour, endHour, lecturerList, chatRoom;
+
+    private final Handler handler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what){
+                case FirestoreDatabase.SUCCESS_GETTING_ALL_LECTURERS:
+                    Log.d(TAG, "Se recuperaron todas los disertantes.");
+                    lecturers = (List<QueryDocumentSnapshot>) msg.obj;
+                    listFullnameLecturers = new String[lecturers.size()];
+                    for (int i = 0; i < lecturers.size(); i++) {
+                        listFullnameLecturers[i] = lecturers.get(i).get("name") + " " + lecturers.get(i).get("lastName");
+                    }
+                    checkedLecturers = new boolean[listFullnameLecturers.length];
+
+                    break;
+                case FirestoreDatabase.ERROR_GETTING_ALL_LECTURERS:
+                    Log.w(TAG, "Error al recuperar todos los disertantes.");
+                    break;
+                case FirestoreDatabase.SUCCESS_SAVING_CHAT:
+                    Toast.makeText(getContext(), "La charla fue guardada con exito", Toast.LENGTH_SHORT);
+                    break;
+                case FirestoreDatabase.ERROR_SAVING_CHAT:
+                    Toast.makeText(getContext(), "Se produjo un error al guardar la charla", Toast.LENGTH_SHORT);
+                    break;
+            }
+        }
+    };
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,7 +97,6 @@ public class CreateScheduleFragment extends Fragment {
         btnDate = root.findViewById(R.id.btn_date_schedule);
         btnStart = root.findViewById(R.id.btn_start_schedule);
         btnEnd = root.findViewById(R.id.btn_end_schedule);
-        //etDate = root.findViewById(R.id.et_date_schedule);
         etStart = root.findViewById(R.id.et_start_schedule);
         etEnd = root.findViewById(R.id.et_end_schedule);
         btnLecturers = root.findViewById(R.id.btn_select_lecturers);
@@ -96,10 +111,6 @@ public class CreateScheduleFragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(root.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
-                        //etDate.setText(selectedDay + "/" + (selectedMonth+1) + "/" + selectedYear);
-                        //day = selectedDay;
-                        //month = selectedMonth-1;
-                        //year = selectedYear;
                     }
                 },date.get(Calendar.DAY_OF_MONTH),date.get(Calendar.MONTH),date.get(Calendar.YEAR));
                 datePickerDialog.show();
@@ -202,7 +213,6 @@ public class CreateScheduleFragment extends Fragment {
             public void onClick(View view) {
                 name = etName.getText().toString();
                 chatRoom = etChatRoom.getText().toString();
-                //date = etDate.getText().toString();
                 starthour = etStart.getText().toString();
                 endHour = etEnd.getText().toString();
                 lecturerList = etSelectedLecturers.getText().toString();
@@ -215,10 +225,6 @@ public class CreateScheduleFragment extends Fragment {
                     etName.setError("Se debe agregar un lugar a la charla");
                     isValidateData = false;
                 }
-                /*if (date.isEmpty()) {
-                    etDate.setError("Se debe seleccionar una fecha para la charla");
-                    isValidateData = false;
-                }*/
                 if (starthour.isEmpty()) {
                     etStart.setError("Se debe seleccionar una hora de inicio para la charla");
                     isValidateData = false;
@@ -236,31 +242,8 @@ public class CreateScheduleFragment extends Fragment {
                 }
             }
         });
-
         return root;
     }
-
-
-    private final Handler handler = new Handler(Looper.myLooper()){
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            switch (msg.what){
-                case FirestoreDatabase.SUCCESS_GETTING_ALL_LECTURERS:
-                    Log.d(TAG, "Se recuperaron todas los disertantes.");
-                    lecturers = (List<QueryDocumentSnapshot>) msg.obj;
-                    listFullnameLecturers = new String[lecturers.size()];
-                    for (int i = 0; i < lecturers.size(); i++) {
-                        listFullnameLecturers[i] = lecturers.get(i).get("name") + " " + lecturers.get(i).get("lastName");
-                    }
-                    checkedLecturers = new boolean[listFullnameLecturers.length];
-
-                    break;
-                case FirestoreDatabase.ERROR_GETTING_ALL_LECTURERS:
-                    Log.w(TAG, "Error al recuperar todos los disertantes.");
-                    break;
-            }
-        }
-    };
 
     private void showAlertDialogForConfirmation() {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
@@ -288,8 +271,8 @@ public class CreateScheduleFragment extends Fragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Chat newSchedule = new Chat(name, starthour, endHour, chatRoom, lecturersSaved);
-                firestoreDatabase.saveChat(handler, newSchedule);
+                Chat newSchedule = new Chat(name, starthour, endHour, chatRoom);
+                firestoreDatabase.saveChat(handler, newSchedule, lecturersSaved);
                 getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
                 dialog.dismiss();
             }

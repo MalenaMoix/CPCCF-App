@@ -6,10 +6,15 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.ems_development.congreso_pccf.models.Chat;
+import com.ems_development.congreso_pccf.models.Lecturer;
 import com.ems_development.congreso_pccf.models.News;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -192,15 +197,14 @@ public class FirestoreDatabase {
         });
     }
 
-    public void saveChat (final Handler handler, Chat newChat) {
-        //TODO solo se guardan los atributos que tiene la charla en si, es decir, falta crear una subcoleccion lecturer
-        // Ademas setear directamente el objeto entero va a crear campos en Firebase para cada atributo que tenga la charla aca en Android
-        // y eso no debe pasar asi que tal vez haya que acceder a cada campo y setearlos de a uno
+    public void saveChat (final Handler handler, final Chat newChat, final List<Lecturer> lecturers) {
+        // TODO ver por que guarda null en lastName y universityDegrees de los lescturers, eso hace que se rompa todo cuando se intentan
+        //  ver las charlas
+        // TODO ademas al estar agregando mas disertantes los cuando se los busque (ya que busca a absolutamente todos) no se muestren
+        //  repetidos cuando se pida seleccionar disertantes al crear una charla
 
-        CollectionReference chatsReference = firestoreInstance.collection(CHATS);
+        final CollectionReference chatsReference = firestoreInstance.collection(CHATS);
 
-        //TODO leer el TODO de arriba para saber el por que esto no esta bien
-        // De ultima esto puede dejarse asi si se eliminar los atributos users y lecturers de la clase Chat
         chatsReference.document().set(newChat).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -214,6 +218,30 @@ public class FirestoreDatabase {
                     message.what = ERROR_SAVING_CHAT;
                     handler.sendMessage(message);
                 }
+            }
+        });
+
+        chatsReference.whereEqualTo("name", newChat.getName()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String idChatDocument = "";
+                Log.d(TAG, "Se ha encontrado el documento con el nombre especificado");
+                for (DocumentSnapshot documentChatSnapshot : queryDocumentSnapshots){
+                    idChatDocument = documentChatSnapshot.getId();
+                }
+                for (Lecturer lecturer : lecturers){
+                    chatsReference.document(idChatDocument).collection(LECTURER).document().set(lecturer).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "El disertante se ha agregado con exito");
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "No se encontro el documento con el nombre especificado");
             }
         });
     }

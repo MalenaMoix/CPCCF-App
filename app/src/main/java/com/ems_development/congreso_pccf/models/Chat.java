@@ -1,27 +1,25 @@
 package com.ems_development.congreso_pccf.models;
 
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chat {
 
+public class Chat {
     private String name;
     private String startDate;
     private String endDate;
     private String chatRoom;
-    private List<Lecturer> lecturerList;
-    private List<User> users;
+    //private List<Lecturer> lecturerList;
+    //private List<User> users;
 
     public Chat() {
-        lecturerList = new ArrayList<>();
-        users = new ArrayList<>();
+        //lecturerList = new ArrayList<>();
+        //users = new ArrayList<>();
     }
 
-    public Chat (String chatName, String start, String end, String room, List<Lecturer> lecturers){
-        this.lecturerList = lecturers;
-        users = new ArrayList<>();
+    public Chat (String chatName, String start, String end, String room){ //List<Lecturer> lecturers)
+        //this.lecturerList = lecturers;
+        //users = new ArrayList<>();
         this.name = chatName;
         this.startDate = start;
         this.endDate = end;
@@ -60,7 +58,7 @@ public class Chat {
         this.chatRoom = chatRoom;
     }
 
-    public List<Lecturer> getLecturerList() {
+    /*public List<Lecturer> getLecturerList() {
         return lecturerList;
     }
 
@@ -74,5 +72,5 @@ public class Chat {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
+    }*/
 }
