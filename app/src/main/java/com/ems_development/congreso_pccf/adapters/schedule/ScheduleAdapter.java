@@ -29,8 +29,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     private FirestoreDatabase firestoreDatabase;
     private View loadingPanel;
 
-
-    //TODO Chequear que cuando se muestren las charlas esten en orden segun la hora de inicio
     private final Handler handler = new Handler(Looper.myLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {

@@ -1,17 +1,16 @@
 package com.ems_development.congreso_pccf.models;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public class Lecturer {
 
+public class Lecturer {
     private String name;
     private String lastName;
     private String universityDegrees;
-    private LocalDate birthDate;
-    private News news;
+    private String birthDate;
+    //private News news;
     private String location;
-    private List<Chat> chats;
+    //private List<Chat> chats;
 
     public Lecturer() {
     }
@@ -40,11 +39,11 @@ public class Lecturer {
         this.universityDegrees = universityDegrees;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -56,7 +55,7 @@ public class Lecturer {
         this.location = location;
     }
 
-    public List<Chat> getChat() {
+    /*public List<Chat> getChat() {
         return chats;
     }
 
@@ -70,5 +69,5 @@ public class Lecturer {
 
     public void setNews(News news) {
         this.news = news;
-    }
+    }*/
 }
