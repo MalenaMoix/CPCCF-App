@@ -27,7 +27,7 @@ public class Lecturer {
         return lastName;
     }
 
-    public void setLastName(String lastname) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -35,7 +35,7 @@ public class Lecturer {
         return universityDegrees;
     }
 
-    public void setUniversityDegrees(String degrees) {
+    public void setUniversityDegrees(String universityDegrees) {
         this.universityDegrees = universityDegrees;
     }
 

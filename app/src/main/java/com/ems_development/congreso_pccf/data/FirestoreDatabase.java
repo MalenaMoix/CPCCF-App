@@ -198,10 +198,6 @@ public class FirestoreDatabase {
     }
 
     public void saveChat (final Handler handler, final Chat newChat, final List<Lecturer> lecturers) {
-        // TODO ver por que guarda null en lastName y universityDegrees de los lescturers, eso hace que se rompa todo cuando se intentan
-        //  ver las charlas
-        // TODO ademas al estar agregando mas disertantes los cuando se los busque (ya que busca a absolutamente todos) no se muestren
-        //  repetidos cuando se pida seleccionar disertantes al crear una charla
 
         final CollectionReference chatsReference = firestoreInstance.collection(CHATS);
 
