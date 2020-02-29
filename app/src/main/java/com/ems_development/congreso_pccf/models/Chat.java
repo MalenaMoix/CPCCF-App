@@ -5,10 +5,10 @@ import java.util.List;
 
 
 public class Chat {
+    private String chatRoom;
+    private String endDate;
     private String name;
     private String startDate;
-    private String endDate;
-    private String chatRoom;
     //private List<Lecturer> lecturerList;
     //private List<User> users;
 
@@ -17,13 +17,13 @@ public class Chat {
         //users = new ArrayList<>();
     }
 
-    public Chat (String chatName, String start, String end, String room){ //List<Lecturer> lecturers)
+    public Chat (String chatName, String endDate, String chatRoom , String startDate){ //List<Lecturer> lecturers)
         //this.lecturerList = lecturers;
         //users = new ArrayList<>();
         this.name = chatName;
-        this.startDate = start;
-        this.endDate = end;
-        this.chatRoom = room;
+        this.endDate = endDate;
+        this.chatRoom = chatRoom;
+        this.startDate = startDate;
     }
 
     public String getName() {
@@ -50,11 +50,11 @@ public class Chat {
         this.endDate = endDate;
     }
 
-    public String getRoom() {
+    public String getChatRoom() {
         return chatRoom;
     }
 
-    public void setRoom(String chatRoom) {
+    public void setChatRoom(String chatRoom) {
         this.chatRoom = chatRoom;
     }
 

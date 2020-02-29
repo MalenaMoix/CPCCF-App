@@ -62,6 +62,15 @@ public class CreateScheduleFragment extends Fragment {
                 case FirestoreDatabase.SUCCESS_GETTING_ALL_LECTURERS:
                     Log.d(TAG, "Se recuperaron todas los disertantes.");
                     lecturers = (List<QueryDocumentSnapshot>) msg.obj;
+
+                    for (int i = 0;i < lecturers.size(); i++) {
+                        for (int j = i; (j+1) < lecturers.size(); j++) {
+                            if(lecturers.get(i).get("name").equals(lecturers.get(j+1).get("name")) && lecturers.get(i).get("lastName").equals(lecturers.get(j+1).get("lastName"))) {
+                                lecturers.remove(lecturers.get(j+1));
+                            }
+                        }
+                    }
+
                     listFullnameLecturers = new String[lecturers.size()];
                     for (int i = 0; i < lecturers.size(); i++) {
                         listFullnameLecturers[i] = lecturers.get(i).get("name") + " " + lecturers.get(i).get("lastName");
@@ -271,7 +280,7 @@ public class CreateScheduleFragment extends Fragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Chat newSchedule = new Chat(name, starthour, endHour, chatRoom);
+                Chat newSchedule = new Chat(name, endHour, chatRoom, starthour);
                 firestoreDatabase.saveChat(handler, newSchedule, lecturersSaved);
                 getFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_admin, new HomeFragment()).addToBackStack(null).commit();
                 dialog.dismiss();
