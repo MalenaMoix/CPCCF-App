@@ -1,6 +1,5 @@
 package com.ems_development.congreso_pccf.fragments.news;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,20 +13,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.ems_development.congreso_pccf.R;
-import com.ems_development.congreso_pccf.activities.ViewForAdminUsersActivity;
 import com.ems_development.congreso_pccf.data.FirestoreDatabase;
 import com.ems_development.congreso_pccf.fragments.home.HomeFragment;
 import com.ems_development.congreso_pccf.models.News;
-import com.ems_development.congreso_pccf.models.User;
 
 
 public class CreateNewsFragment extends Fragment {
@@ -41,7 +35,6 @@ public class CreateNewsFragment extends Fragment {
     private String title;
     private String content;
     private FirestoreDatabase firestoreDatabase;
-    private User user;
     private News newNews;
 
     private final Handler handler = new Handler(Looper.myLooper()){
@@ -87,8 +80,6 @@ public class CreateNewsFragment extends Fragment {
                     isValidateData = false;
                 }
                 if(isValidateData) {
-                    //user = ((ViewForAdminUsersActivity)getActivity()).getCurrentUser();
-                    //createNewsViewModel.createNews(title,content,user);
                     showAlertDialogForConfirmation();
                 }
             }
@@ -111,8 +102,8 @@ public class CreateNewsFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        ok = dialogView.findViewById(R.id.button_ok);
-        cancel = dialogView.findViewById(R.id.button_cancel);
+        ok = dialogView.findViewById(R.id.button_ok_news);
+        cancel = dialogView.findViewById(R.id.button_cancel_news);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

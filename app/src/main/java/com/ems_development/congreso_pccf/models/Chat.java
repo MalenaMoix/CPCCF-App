@@ -1,18 +1,29 @@
 package com.ems_development.congreso_pccf.models;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Chat {
 
-    private String name;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+public class Chat {
     private String chatRoom;
-    private List<Lecturer> lecturerList;
-    private List<User> users;
+    private String endDate;
+    private String name;
+    private String startDate;
+    //private List<Lecturer> lecturerList;
+    //private List<User> users;
 
     public Chat() {
+        //lecturerList = new ArrayList<>();
+        //users = new ArrayList<>();
+    }
+
+    public Chat (String chatName, String endDate, String chatRoom , String startDate){ //List<Lecturer> lecturers)
+        //this.lecturerList = lecturers;
+        //users = new ArrayList<>();
+        this.name = chatName;
+        this.endDate = endDate;
+        this.chatRoom = chatRoom;
+        this.startDate = startDate;
     }
 
     public String getName() {
@@ -23,31 +34,31 @@ public class Chat {
         this.name = name;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public String getRoom() {
+    public String getChatRoom() {
         return chatRoom;
     }
 
-    public void setRoom(String chatRoom) {
+    public void setChatRoom(String chatRoom) {
         this.chatRoom = chatRoom;
     }
 
-    public List<Lecturer> getLecturerList() {
+    /*public List<Lecturer> getLecturerList() {
         return lecturerList;
     }
 
@@ -61,5 +72,5 @@ public class Chat {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
+    }*/
 }

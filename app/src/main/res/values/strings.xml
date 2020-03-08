@@ -12,7 +12,7 @@
     <string name="enter_your_email">Ingresa tu email y te enviaremos un link para que puedas cambiar tu contraseña</string>
     <string name="send">Enviar</string>
     <string name="title_activity_bottom_navigation_view">CPCCF</string>
-    <string name="title_news">Novedades</string>
+    <string name="title_news">Noticias</string>
     <string name="title_shedule_of_talks">Cronograma</string>
     <string name="title_home">Home</string>
     <string name="title_location">Ubicacion</string>
@@ -29,6 +29,7 @@
     <string name="city">Ciudad: </string>
     <string name="buses">Colectivos: </string>
     <string name="txt_title_create_news">Nueva noticia</string>
+    <string name="title_create_news">Crear noticia</string>
     <string name="txt_title_news">Titulo:</string>
     <string name="txt_content_news">Contenido:</string>
     <string name="hint_title_news">Titulo</string>
@@ -37,8 +38,20 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="dialog_create_news">Crear noticia</string>
-    <string name="dialog_message">Desea crear esta noticia?</string>
+    <string name="dialog_news_message">Desea crear esta noticia?</string>
+    <string name="dialog_chat_message">Desea crear esta charla?</string>
+    <string name="title_create_shedule">Crear charla</string>
+    <string name="txt_title_create_schedule">Nueva Charla</string>
+    <string name="hint_name_schedule">Nombre</string>
+    <string name="btn_date_schedule">Fecha</string>
+    <string name="btn_start_schedule">Inicio</string>
+    <string name="btn_end_schedule">Fin</string>
+    <string name="hint_date_schedule">Fecha de la charla</string>
+    <string name="hint_start_schedule">Hora de inicio</string>
+    <string name="hint_end_schedule">Hora de fin</string>
     <string name="sign_up_gmail">Ingresar con gmail</string>
     <string name="get_started">Comencemos</string>
     <string name="already_have_account">ya tienes una cuenta?</string>
+    <string name="btn_add_lecturers">Agregar disertantes</string>
+    <string name="chat_room">Lugar</string>
 </resources>
