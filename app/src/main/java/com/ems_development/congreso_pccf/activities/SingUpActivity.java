@@ -27,7 +27,7 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sing_up);
+        setContentView(R.layout.activity_sign_up);
 
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
