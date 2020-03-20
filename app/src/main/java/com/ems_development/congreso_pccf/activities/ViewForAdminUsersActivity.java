@@ -15,6 +15,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.ems_development.congreso_pccf.data.FirebaseCloudStorage;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +33,7 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
     private TextView userEmail;
     private View navHeaderAdmin;
     private FirebaseUser user;
+    private GoogleSignInAccount account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
 
 
         navHeaderAdmin = navigationView.getHeaderView(0);
-        profilePicture = navHeaderAdmin.findViewById(R.id.image_view_current_user);
+        profilePicture = navHeaderAdmin.findViewById(R.id.profile_picture);
         userEmail = navHeaderAdmin.findViewById(R.id.txt_user_email);
 
         profilePicture.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +69,16 @@ public class ViewForAdminUsersActivity extends AppCompatActivity {
             }
             if (user.getEmail() != null){
                 userEmail.setText(user.getEmail());
+            }
+        }
+
+        account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account != null){
+            if (account.getPhotoUrl() != null){
+                Glide.with(this).load(account.getPhotoUrl()).into(profilePicture);
+            }
+            if (account.getEmail() != null){
+                userEmail.setText(account.getEmail());
             }
         }
     }

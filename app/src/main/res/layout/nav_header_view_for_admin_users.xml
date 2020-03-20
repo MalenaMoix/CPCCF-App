@@ -14,7 +14,7 @@
     android:id="@+id/nav_header_view_for_admin_users">
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/image_view_current_user"
+        android:id="@+id/profile_picture"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:clickable="true"
