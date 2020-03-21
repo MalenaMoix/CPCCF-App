@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.ems_development.congreso_pccf.R;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -17,12 +19,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class SingUpActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
-    private EditText emailField;
-    private EditText passwordField;
+    private FirebaseAuth mAuth;
+    private EditText emailField, passwordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,6 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
         passwordField = findViewById(R.id.password);
 
         findViewById(R.id.signUpButton).setOnClickListener(this);
-        findViewById(R.id.gmailButton).setOnClickListener(this);
         findViewById(R.id.textView_has_account).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -42,7 +42,6 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     private void createAccount(String email, String password) {
@@ -56,11 +55,10 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "createUserWithEmail:success");
-                    FirebaseUser user = mAuth.getCurrentUser();
                 }
                 else {
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(SingUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -91,14 +89,14 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         int i = v.getId();
+
         if (i == R.id.signUpButton && validateForm()) {
             createAccount(emailField.getText().toString(), passwordField.getText().toString());
             startActivity(new Intent(this, LogInActivity.class));
         }
+
         if (i == R.id.textView_has_account){
             startActivity(new Intent(this, LogInActivity.class));
         }
-
-        //TODO falta la logica de registrarse con Gmail
     }
 }

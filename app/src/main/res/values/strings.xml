@@ -54,4 +54,6 @@
     <string name="already_have_account">ya tienes una cuenta?</string>
     <string name="btn_add_lecturers">Agregar disertantes</string>
     <string name="chat_room">Lugar</string>
+    <string name="button_log_out">Cerrar sesion</string>
+    <string name="sign_in_with_google">Ingresar con Google</string>
 </resources>

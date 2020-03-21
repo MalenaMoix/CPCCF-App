@@ -24,7 +24,7 @@
       
         <activity android:name=".activities.ResetPasswordActivity"> </activity>
 
-        <activity android:name=".activities.SingUpActivity"> </activity>
+        <activity android:name=".activities.SignUpActivity"> </activity>
 
         <activity android:name=".activities.LogInActivity">
             <intent-filter>
