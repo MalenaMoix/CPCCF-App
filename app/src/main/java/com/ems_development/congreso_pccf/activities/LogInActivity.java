@@ -30,6 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.shobhitpuri.custombuttons.GoogleSignInButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +46,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseUser user;
     private FirestoreDatabase firestoreDatabase;
     private EditText emailField, passwordField;
-    SignInButton signInButton;
+    GoogleSignInButton signInButton;
     GoogleSignInOptions signInOptions;
     GoogleSignInClient signInClient;
     GoogleSignInAccount account;
     private List<QueryDocumentSnapshot> admins = new ArrayList<>();
 
-    //TODO no trae los admin?
 
     private Handler handler = new Handler(Looper.myLooper()){
         @Override
@@ -78,7 +79,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         findViewById(R.id.button_continue).setOnClickListener(this);
         findViewById(R.id.forgot_password).setOnClickListener(this);

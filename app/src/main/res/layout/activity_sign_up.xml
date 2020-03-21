@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/patients"
         android:textAppearance="@style/patients"
@@ -63,7 +64,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/raleway_semibold"
         android:text="@string/get_started"
         android:textColor="@color/black"
@@ -105,27 +106,6 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
-        android:id="@+id/gmailButton"
-        android:layout_width="292dp"
-        android:layout_height="50dp"
-        android:background="@drawable/button_gmail"
-        android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/ic_google"
-        android:drawablePadding="5dp"
-        android:paddingLeft="25dp"
-        android:paddingTop="10dp"
-        android:paddingRight="25dp"
-        android:paddingBottom="10dp"
-        android:text="@string/sign_up_gmail"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:fontFamily="@font/muli"
-        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,18 +113,9 @@
         android:background="@drawable/button_continue"
         android:text="@string/create_account"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        app:fontFamily="@font/muli"
+        android:textSize="15sp"
+        app:fontFamily="@font/muli_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/gmailButton"
-        app:layout_constraintStart_toStartOf="@+id/gmailButton" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_up_with_gmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/rectangle_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

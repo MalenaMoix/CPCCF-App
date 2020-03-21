@@ -29,7 +29,7 @@
         android:layout_height="55dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="18dp"
         android:gravity="center_horizontal|top"
         android:text="@string/congress_arg"
         android:textAppearance="@style/congress_arg"
@@ -55,7 +55,6 @@
     <ImageView
         android:layout_width="68dp"
         android:layout_height="196dp"
-        android:layout_marginTop="12dp"
         android:src="@drawable/ic_main_logo"
         app:layout_constraintEnd_toStartOf="@id/congress_arg"
         app:layout_constraintTop_toBottomOf="@id/welcome" />
@@ -64,7 +63,7 @@
         android:id="@+id/email"
         android:layout_width="315dp"
         android:layout_height="47dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
         android:hint="@string/email"
@@ -131,19 +130,22 @@
         android:elevation="4dp"
         android:text="@string/button_continue"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        app:fontFamily="@font/muli"
+        android:textSize="15sp"
+        app:fontFamily="@font/muli_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.gms.common.SignInButton
+    <com.shobhitpuri.custombuttons.GoogleSignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="299dp"
+        android:layout_height="47dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_gmail"
+        android:text="@string/sign_in_with_google"
+        app:isDarkTheme="false"
         app:layout_constraintBottom_toTopOf="@+id/button_continue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
